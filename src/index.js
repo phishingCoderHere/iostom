@@ -1,31 +1,29 @@
-// const express = require('express')
-// const fs = require('fs')
-const index = require('./pages/index.art')
-// template.defaults.extname = '.html'
-// const app = express()
+const jQuery = require('./resources/jquery.js');
+window.jQuery = jQuery;
+window.$ = jQuery
+require('./resources/hm.js');
+require('./resources/push.js');
+require('./resources/hammer.js');
+require('./resources/tongji.js');
+require('./resources/11.0.1.js');
+require('./resources/ab77b6ea7f3fbf79.js');
+require('./resources/bootstrap.js');
+require('./resources/js_v1.js');
+require('./resources/jquery.marquee.js');
+require('./resources/app.js');
 
-// app.engine('html', require('express-art-template'))
-// app.use('/', express.static(path.join(__dirname, '/', '/pages/')))
-// app.set('views', path.join(__dirname, '/', 'pages'))
-
-// app.listen(8080, () => {
-//     console.log('server running on port 8080....');
-// })
-
-// app.get('/', function (req, res) {
-//     res.render('index.html')
-// })
-
-// app.get('/ios', function (req, res) {
-//     res.render('index.html')
-// })
-// template.defaults.extname = '.html'
-function component() {
-    var element = document.createElement('div');
-    element.className = 'root'
-    element.innerHTML = index({})
-    return element;
-}
-document.body.appendChild(component());
+const appcss = require('./resources/app.css');
+// const allcss = require('./resources/all.css');
+const indexcss = require('./resources/index.css');
+const v1css = require('./resources/style_v1.css');
+const v2css = require('./resources/style_v2.css');
 
 
+var styleTag = document.createElement('style');
+styleTag.innerHTML += appcss;
+styleTag.innerHTML += indexcss;
+styleTag.innerHTML += v1css;
+styleTag.innerHTML += v2css;
+// styleTag.innerHTML += allcss;
+
+document.body.appendChild(styleTag);

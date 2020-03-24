@@ -164,7 +164,7 @@
 
 .title h2,a .title h2{position:absolute;display:inline-block; height:16px;font-weight: bold; margin:15px 0px; border-left:3px solid #f73f43; float:left; font-size:0.45rem; line-height:16px; padding:0 5px;}
 
-.title .enter{float:right;background:url(../img/enter.png) no-repeat center;width:12px;height:20px;background-size:12px 20px;position:absolute;top:8px;right:10px}
+/* .title .enter{float:right;background:url(../img/enter.png) no-repeat center;width:12px;height:20px;background-size:12px 20px;position:absolute;top:8px;right:10px} */
 
 .title .tab-lock{float:right;margin:6px 0;width:136px;height:35px;font-size:15px;}
 
@@ -184,7 +184,7 @@
 
 .title2 h2,a .title2 h2{position:absolute;display:inline-block; height:16px;font-weight: normal; margin:10px 10px; border-left:3px solid #19b5fe; float:left; font-size:16px; line-height:16px; padding:0 5px;}
 
-.title2 .enter{float:right;background:url(../img/enter.png) no-repeat center;width:12px;height:20px;background-size:12px 20px;position:absolute;top:8px;right:10px}
+/* .title2 .enter{float:right;background:url(../img/enter.png) no-repeat center;width:12px;height:20px;background-size:12px 20px;position:absolute;top:8px;right:10px} */
 
 
 
