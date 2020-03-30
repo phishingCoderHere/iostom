@@ -1,29 +1,32 @@
-// const appcss = require('./resources/app.css');
-// // const allcss = require('./resources/all.css');
-// const indexcss = require('./resources/index.css');
-// const v1css = require('./resources/style_v1.css');
-// const v2css = require('./resources/style_v2.css');
+const express = require('express')
+const path = require('path')
+// const mainPage = require('./controller/mpageController')
+const welcomeController = require('./controller/welcomeController')
+const mpageController = require('./controller/mpageController')
+const bodyParser = require('body-parser')
 
+const port = 8333
 
-// var styleTag = document.createElement('style');
-// styleTag.innerHTML += appcss;
-// styleTag.innerHTML += indexcss;
-// styleTag.innerHTML += v1css;
-// styleTag.innerHTML += v2css;
-// // styleTag.innerHTML += allcss;
+const app = express()
 
-// document.body.appendChild(styleTag);
+app.engine('html', require('express-art-template'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.set('views', path.join(__dirname, '/pages'))
 
-const jQuery = require('./resources/jquery.js');
-window.jQuery = jQuery;
-window.$ = jQuery
-// require('./resources/hm.js');
-// require('./resources/hammer.js');
-// require('./resources/tongji.js');
-require('./resources/bootstrap.js');
-// require('./resources/js_v1.js');
-// require('./resources/jquery.marquee.js');
-// require('./resources/app.js');
+/* 声明控制器 */
+// app.use(mainPage)
+app.use(welcomeController)
+app.use(mpageController)
 
+/**资源文件 */
+app.use('/pages', express.static(path.join(__dirname, '/pages')))
+app.use('/resources', express.static(path.join(__dirname, '/resources')))
+// app.use('/images', express.static(path.join(__dirname, '/', 'pages/login/images')))
+// app.use('/public', express.static(path.join(__dirname, '/', 'pages/login/public')))
+// app.use('/resources', express.static(path.join(__dirname, '/', 'pages/login/resources')))
+// app.use('/', express.static(path.join(__dirname, '/', 'pages/login/resources')))
+// app.set('views', path.join(__dirname, '/', 'pages'))
 
-
+app.listen(port, () => {
+    console.log(`server running on port ${port}....`);
+})
