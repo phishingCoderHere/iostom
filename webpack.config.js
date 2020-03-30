@@ -16,8 +16,8 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     // MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    // 'style-loader'
+                    'file-loader',
+
                 ]
             },
             {
@@ -88,14 +88,16 @@ module.exports = {
                                 //     attribute: 'src',
                                 //     type: 'src'
                                 // },
-                                // {
-                                //     tag: 'link',
-                                //     attribute: 'href',
-                                //     type: 'src',
-                                // filter: (tag, attribute, attributes) => {
-                                //     if (!/stylesheet/i.test(attributes.rel)) {
-                                //         return false;
-                                //     }
+                                {
+                                    tag: 'link',
+                                    attribute: 'href',
+                                    type: 'src',
+                                    // filter: (tag, attribute, attributes) => {
+                                    //     if (!/stylesheet/i.test(attributes.rel)) {
+                                    //         return false;
+                                    //     }
+                                    // }
+                                }
 
                                 //     if (
                                 //         attributes.type &&
@@ -115,7 +117,7 @@ module.exports = {
             }
         ]
     },
-    devtool: 'inlin-source-map',
+    // devtool: 'inlin-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             title: 'iostom',
