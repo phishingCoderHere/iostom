@@ -30,3 +30,8 @@ app.use('/resources', express.static(path.join(__dirname, '/resources')))
 app.listen(port, () => {
     console.log(`server running on port ${port}....`);
 })
+app.get('/test', (req, resp, next) => {
+    console.log('req', req)
+    resp.send()
+    next()
+})
