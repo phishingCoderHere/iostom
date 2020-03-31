@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 // const mainPage = require('./controller/mpageController')
-const welcomeController = require('./controller/welcomeController')
+const iosController = require('./controller/iosController')
 const mpageController = require('./controller/mpageController')
 const bodyParser = require('body-parser')
 
@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, '/pages'))
 
 /* 声明控制器 */
 // app.use(mainPage)
-app.use(welcomeController)
+app.use(iosController)
 app.use(mpageController)
 
 /**资源文件 */
