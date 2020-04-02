@@ -1,0 +1,293 @@
+.close_all{
+  z-index: 4;
+  position: absolute;
+  right: -5px;
+  height: 22px;
+  width: 22px;
+  line-height: 17px;
+  background: rgba(20,22,40,.7);
+  top: -10px;
+  color: #fff;
+  font-size: 30px;
+  border: 1px solid #3f4b6f;
+}
+/* picbox */
+.picbox{padding:5px;position:absolute;z-index:5000;top:100px;left:calc(50% - 390px);background:rgba(0,0,0,.7);width:780px;margin:40px auto 0 auto;display: none;}
+#featured{height:320px;overflow:hidden;position:relative;}
+#featured .image{position:absolute;height:320px;overflow:hidden;}
+#featured .image video{
+  width: 780px;
+  height: 260px;
+}
+#featured .word{z-index:10;left:0px;width:0;color:#fff;bottom:0px;position:absolute;height:0;padding:0;text-align:left;background:#333;font-size:12px;line-height:17px;color:#fff;}
+#featured .word h3{font-size:13px;height:20px;padding:5px 0 7px 0;}
+#featured .word p{line-height:28px;}
+#thumbs{width:780px;height:57px;}
+*html #thumbs{height:100%;}
+#thumbs li{display:inline;float:left;cursor:pointer}
+#thumbs li a{display:block;font-size:0px;width:78px;height:37px;padding:10px;}
+#thumbs li a img{display:block;font-size:0px;width:76px;height:37px;border:1px solid #999999;}
+#thumbs li a:hover img{display:block;border:1px solid #0099FF;height:37px;width:76px;}
+#thumbs li a.current img{display:block;border:1px solid #0099FF;height:37px;width:76px;}
+
+#thumbs .btnPrev{
+  position: absolute;
+  left: 15px;
+  margin-top: 10px;
+}
+#thumbs .btnNext{
+  position: absolute;
+  right: 15px;
+  margin-top: 10px;
+}
+
+.btnNext{
+  float: right !important;
+}
+
+#featured .btn {
+  color: #38ecf0;
+  margin: 0 5px;
+  cursor: pointer;
+  background: #263650;
+  border: 1px solid #476194;
+  border-radius: 4px;
+  float: right;
+  text-align: center;
+  line-height: 26px;
+  width: 26px;
+  height: 26px;
+  z-index: 3;}
+
+.shadow{
+  display: none;
+  z-index: 4;
+  background: rgba(0,0,0,.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+}
+.tempWrap{
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.video-play{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0,0,0,.5);
+  text-align: center;
+  vertical-align: middle;
+}
+.video-play img{
+  margin-top: 20%;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+}
+/*video 样式*/
+.js-video {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/*********************
+ * Elements inside js-video
+ *********************/
+video {
+  max-width: 100%;
+  max-height: 70vh;
+  background-size: cover;
+  background-position: center center;
+}
+
+.js-video button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/*********************
+ * UI
+ *********************/
+.playPause.ui-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 0;
+  display: block;
+  width: auto;
+  bottom: 56px;
+}
+.playPause.ui-icon:before, .playPause.ui-icon:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.playPause.ui-icon:after {
+  content: '';
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+.playPause.ui-icon:before {
+  font-size: 40px;
+  line-height: 80px;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -14px;
+}
+.playPause.ui-icon.fa-pause:before, .playPause.ui-icon.fa-undo:before {
+  margin-left: -17px;
+}
+.playPause.ui-icon.fa-pause {
+  opacity: 0;
+}
+
+.ui {
+  padding: 10px 1vw;
+  font-size: 0;
+  display: -webkit-flex;
+  display: flex;
+}
+.ui > div:nth-of-type(1), .ui > div:nth-of-type(4) {
+  padding-top: 8px;
+}
+.ui > div:nth-of-type(1) {
+  -webkit-flex: 30 30 1px;
+  flex: 30 30 1px;
+  margin-right: 10px;
+}
+.ui > div:nth-of-type(2) {
+  -webkit-flex: 1 0 60px;
+  flex: 1 0 60px;
+  font-size: 12px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 20px;
+}
+.ui > div:nth-of-type(3) {
+  -webkit-flex: 0 0 20px;
+  flex: 0 0 20px;
+  margin-right: 10px;
+}
+.ui > div:nth-of-type(4) {
+  -webkit-flex: 0 0 60px;
+  flex: 0 0 60px;
+}
+
+.timeDisplay {
+  white-space: nowrap;
+}
+.timeDisplay i {
+  font-style: normal;
+}
+
+.full-screen {
+  position: absolute;
+  font-style: normal;
+  left: 20px;
+  bottom: 66px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  -moz-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.full-screen:before {
+  font-size: 30px;
+  line-height: 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.full-screen:hover:before {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ui-icon {
+  font-size: 20px;
+  vertical-align: middle;
+  width: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/*********************
+ * Progress
+ *********************/
+.progress, .volumeControl {
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  position: relative;
+  height: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 0;
+}
+
+.progress > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.progress-time {
+  background-color: black;
+}
+
+.anim {
+  -moz-transition: width 1000ms linear;
+  -o-transition: width 1000ms linear;
+  -webkit-transition: width 1000ms linear;
+  transition: width 1000ms linear;
+}
+
+.progress-buffer {
+  background-color: rgba(255, 255, 255, 0.3);
+  -moz-transition: width 250ms linear;
+  -o-transition: width 250ms linear;
+  -webkit-transition: width 250ms linear;
+  transition: width 250ms linear;
+}
+
+.volumeControl {
+  width: 90%;
+  overflow: visible;
+  position: relative;
+  background: rgba(255,255, 255, 0.3);
+}
+.volumeControl .ui-slider-handle {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 0;
+  top: -2px;
+  background: transparent;
+}
+.volumeControl .ui-slider-handle:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -50%;
+  background: white;
+  border-radius: 4px;
+}
+.volumeControl .ui-slider-handle:focus {
+  outline: none;
+}

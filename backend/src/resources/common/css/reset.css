@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/*rest*/
+body,h1,h2,h3,h4,h5,h6,p,dl,dd,ul,ol,pre,form,input,textarea,th,td,select,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{ margin:0; padding:0; font-size:100%; font-family:'Microsoft Yahei',Helvetica,Arial; }
+/*  th, td { */
+/*     margin: 0; */
+/*     padding: 0; */
+/*     font-size: 110%; */
+/*     font-family: 'Microsoft Yahei',Helvetica,Arial; */
+/* } */
+body { word-wrap:break-word; } /* 长单词换到下一行 */
+h1,h2,h3,h4,h5,h6{ font-weight:normal }
+address,em,strong,th{ font-style:normal;font-weight:normal }
+i{ font-style:normal; }
+table{ border-collapse:collapse; font-size:100%; }
+ol,ul{list-style:none}
+img{ border:none;vertical-align:top; }
+a{ text-decoration:none; }
+a:hover{ text-decoration:none; }
+a:focus{ outline:0; }
+textarea{ resize:none;overflow:auto; }
+textarea,input{ background:none;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-appearance:normal; }
+input[type=password] {-webkit-text-security:disc;}
+input, select, textarea{ outline:none; }
+/* ios 中 点击a、input 或 js定义的可点击元素，会出现一个半透明的灰色背景，设置设置透明度可禁用 */
+a,input{-webkit-tap-highlight-color:rgba(0,0,0,0);} /* 并对js定义的点击元素单独进行设置 */
+
+/* 解决旧版本Chrome中input获得焦点后的黄色背景 */
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px #fff inset;} /* 背景想要的颜色 替换 #fff  */
+/* end reset */
+
+
+
+/*浮动*/
+.fl{ float:left; }
+.fr{ float:right; }
+.clear:after,
+.clear:before{ content: "";display: table; }
+.clear:after{ clear: both; }
+.clear{ *zoom:1; }
+
+

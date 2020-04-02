@@ -1,0 +1,3 @@
+.dropdown-caret-right{left:unset;right:0;}
+.dropdown-menu.dropdown-caret-right:before {left:unset;right:9px;}
+.dropdown-menu.dropdown-caret-right:after {left:unset;right:10px;}
