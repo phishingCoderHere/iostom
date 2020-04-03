@@ -49,7 +49,7 @@ router.get('/quickstart/detail.do/:id', function (req, res) {
 
 router.post('/quickstart/add.do', function (req, res) {
     console.log('add req.url', data.url)
-    data.push({
+    data.data.push({
         title: req.body.title,
         type: req.body.type,
         prioriy: req.body.prioriy,
@@ -57,6 +57,7 @@ router.post('/quickstart/add.do', function (req, res) {
         utime: req.body.utime,
         id: req.body.id
     })
+    res.end()
 })
 
 module.exports = router;
