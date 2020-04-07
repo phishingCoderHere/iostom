@@ -3,22 +3,28 @@ const moment = require('moment')
 const { v4 } = require('uuid')
 
 const router = express.Router()
-const Course = require('../domain/Course')
+let Course = require('../domain/Course')
 const courseCrud = require('../repository/CourseCrud')
 
-const uuid = v4();
+const uuid = v4;
 
 router.get('/quickstart/condition.do', function (req, res) {
     console.log('条件查询req.url', req.url)
     console.log('条件查询req.params', req.params)
     res.setHeader('Content-Type', 'application/json')
     const param = req.params
-    courseCrud.find(Course, { title: param.title },
+    courseCrud.find(Course, param,
         (err, ret) => {
             if (err) {
                 throw err;
             }
-            res.end(JSON.stringify(ret))
+            const data = JSON.stringify({
+                data: ret,
+                pagingBean: {
+                    allNum: ret.length
+                }
+            })
+            res.end(data)
         }
     )
 })
@@ -37,14 +43,11 @@ router.post('/quickstart/add.do', function (req, res) {
         title: req.body.title,
         type: req.body.type,
         priority: req.body.priority,
-        ctime: moment(),
-        utime: moment(),
-        id: uuid(),
         titledesc: req.body.titledesc,
         content: req.body.content,
         order: req.body.order,
         url: req.body.url,
-        local: req.body.local,
+        local: req.body.local.join(','),
         status: req.body.status
     }
     courseCrud.insert(Course, course, () => {
@@ -53,7 +56,7 @@ router.post('/quickstart/add.do', function (req, res) {
 })
 
 router.mongoose = (mongoose) => {
-    course = Course(mongoose)
+    Course = Course(mongoose)
     return router
 }
 

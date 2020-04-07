@@ -1,4 +1,8 @@
 const moment = require('moment')
+const _ = require('lodash')
+const { v4 } = require('uuid')
+
+const uuid = v4
 /**
  * 根据id更新
  * @param {*} Model 
@@ -24,15 +28,13 @@ function updateById(Model, id, entity, callback) {
  * @param {*} callback 
  */
 function insert(Model, row, callback) {
-    if (req.session.user) {
-        const key = req.session.user._id
-        row.createDate = moment.now()
-        row.modifyDate = moment.now()
-        row.createUser = key
-        row.modifyUser = key
+    const common = {
+        ctime: moment(),
+        utime: moment(),
+        id: uuid(),
     }
-    const entity = new Model(row);
-    entity.save().then(() => callback());
+    row = _.merge(row, common)
+    new Model(row).save().then(() => callback());
 }
 
 /**
