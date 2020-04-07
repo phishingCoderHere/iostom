@@ -47,7 +47,14 @@
                                         placeholder="请输入编号..." class="col-xs-12 col-sm-12"></textarea>
                                 </div>
                             </div>
-
+                            <div class="form-group col-xs-12 mgt20">
+                                <label class="col-sm-3 control-label no-padding-right">优先级
+                                    <span style='color:red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <input name='priority' id="form-field-name" type="number" required="required"
+                                        placeholder="优先级..." class="col-xs-12 col-sm-12"></textarea>
+                                </div>
+                            </div>
                             <div class="form-group col-xs-12 mgt20">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 顺序号
                                     <span style='color:red;'>*</span></label>
@@ -77,6 +84,7 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="form-group col-xs-12 mgt20">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-length"> 所在位置（多选）
                                     <span style='color:red;'>*</span></label>
@@ -94,7 +102,7 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-resp"> 状态
                                     <span style='color:red;'>*</span></label>
                                 <div class="col-sm-9">
-                                    <select name='ctime' id="form-field-resp" required="required" placeholder="请选择..."
+                                    <select name='status' id="form-field-resp" required="required" placeholder="请选择..."
                                         class="col-xs-12 col-sm-12">
                                         <option label="已启用" value="1" aria-checked="true"></option>
                                         <option label="已禁用" value="0"></option>
