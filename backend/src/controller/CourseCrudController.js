@@ -10,10 +10,13 @@ const uuid = v4;
 
 router.get('/quickstart/condition.do', function (req, res) {
     console.log('条件查询req.url', req.url)
-    console.log('条件查询req.params', req.params)
+    console.log('条件查询req.query', req.query)
     res.setHeader('Content-Type', 'application/json')
-    const param = req.params
-    courseCrud.find(Course, param,
+    const obj = {}
+    if (req.query.title) {//title：模糊查询
+        obj.title = { $regex: `.*${req.query.title}.*`, $options: 'i' }
+    }
+    courseCrud.find(Course, obj,
         (err, ret) => {
             if (err) {
                 throw err;

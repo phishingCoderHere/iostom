@@ -95,17 +95,11 @@
                         <form  autocomplete="off" class="form-horizontal" role="form" id='queryForm'>
                             <div class="form-group col-xs-2">
                                 <div class="col-sm-12">
-                                    <input type="text" id="form-field-1" name='cameraNumber' placeholder="请输入摄像头编号..."
+                                    <input type="text" id="form-field-1" name='title' placeholder="请输入标题..."
                                            class="col-xs-12 col-sm-12"/>
                                 </div>
                             </div>
-                            <div class="form-group col-xs-2">
-                                <div class="col-sm-12">
-                                    <smart:select uri="allBay" placeholder="请选择港湾... " displayField="name"
-                                                  valueField="id" name="bayId" id="form-filed-bay-index"
-                                                  clazz="col-xs-12 col-sm-12 " blankOption="true"/>
-                                </div>
-                            </div>
+                            
                             <div class="form-group col-xs-2">
                                 <div class="col-sm-12">
                                     <button class="btn btn-success radius5 btn-sm form-button" type="button"
@@ -190,9 +184,14 @@
             // },
             {
                 data: 'id', title: '<i class="ace-icon bigger-110 fa fa-wrench"></i>操作', render: function (data, type, row, meta) {
+                    let html = `<a class="blue" href="javascript:showInfo(\'' + data + '\');" title="${row.status === '1' ? '作废' : '启用'}" >
+                    ${ row.status === '1' ? '<i class="ace-icon fa fa-times bigger-130"></i>' : '<i clas="ace-icon fa fa-trash bigger-130"></i>'}</a> `
+
+                    console.log(html);
+
                     return '<div class="hidden-sm hidden-xs action-buttons">' +
-                        '<a class="blue" href="javascript:showInfo(' + data + ');" title="编辑" > <i class="ace-icon fa fa-search-plus bigger-130"></i></a>' +
-                        '<a class="blue" href="javascript:showInfo(' + data + ');" title="作废" > <i class="ace-icon fa fa-search-plus bigger-130"></i></a>' +
+                        '<a class="blue" href="javascript:showInfo(\'' + data + '\');" title="编辑" > <i class="ace-icon fa fa-search-plus bigger-130"></i></a>' +
+                        html +
                         '</div>';
                 }
             }
@@ -273,7 +272,7 @@
             contentType: 'application/json',// 声明提交的数据类型
             dataType: 'json',// 声明请求的数据类型
             type: "GET",
-            url: `quickstart/detail.do/${qsId}`,
+            url: `quickstart / detail.do / ${qsId} `,
             success: data => {
                 smart.setFormValues('editForm', data);
             }
