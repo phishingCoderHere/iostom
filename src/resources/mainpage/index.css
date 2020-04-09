@@ -26,13 +26,13 @@
 
 }
 
-/* .top-text{
+.top-text{
 
 	height: 0.5405405405405406rem;
 
 	width: 0.5405405405405406rem;
 
-	background-image: url(/images/icon-voice.png);
+	background-image: url(./icon-voice.png);
 
 	background-position: 100% 100%;
 
@@ -40,9 +40,9 @@
 
 	background-repeat: no-repeat;margin-right:0.25rem
 
-} */
+}
 
-/* .gonlue-button {
+.gonlue-button {
 
     height: 0.78378rem;
 
@@ -52,7 +52,7 @@
 
     bottom: 0.27rem;
 
-    background-image: url(/images/gonglue-button.png);
+    background-image: url(./gonglue-button.png);
 
     background-position: 100% 100%;
 
@@ -60,13 +60,13 @@
 
     background-repeat: no-repeat;}
 
-.fs10 {font-size: 0.26667rem;} */
+.fs10 {font-size: 0.26667rem;}
 
 
 
-/* .sign1 {
+.sign1 {
 
-	background-image: url(/images/icon-lable1.png);
+	background-image: url(./icon-lable1.png);
 
 }
 
@@ -74,15 +74,15 @@
 
 .sign2 {
 
-	background-image: url(/images/icon-lable2.png);
+	background-image: url(./icon-lable2.png);
 
-} */
+}
 
 
 
-/* .sign3 {
+.sign3 {
 
-	background-image: url(/images/icon-lable3.png);
+	background-image: url(./icon-lable3.png);
 
 }
 
@@ -90,15 +90,15 @@
 
 .sign4 {
 
-	background-image: url(/images/icon-lable4.png);
+	background-image: url(./icon-lable4.png);
 
-} */
+} 
 
 
 
-/*.sign5 {
+/* .sign5 {
 
-	background-image: url(/images/icon-lable5.png);
+	background-image: url(./icon-lable5.png);
 
 } */
 
