@@ -11,12 +11,14 @@ const uuid = v4
  * @param {*} callback 
  */
 function updateById(Model, id, entity, callback) {
-    if (req.session.user) {
-        const key = req.session.user._id
-        entity.modifyDate = moment.now()
-        entity.modifyUser = key
+    const common = {
+        utime: moment(),
     }
+    entity = _.merge(entity, common)
     Model.findByIdAndUpdate(id, entity, (err, ret) => {
+        if (err) {
+            console.error(err);
+        }
         callback(err, ret)
     })
 }
@@ -31,7 +33,6 @@ function insert(Model, row, callback) {
     const common = {
         ctime: moment(),
         utime: moment(),
-        id: uuid(),
     }
     row = _.merge(row, common)
     new Model(row).save().then(() => callback());
@@ -45,6 +46,24 @@ function insert(Model, row, callback) {
  */
 function findOne(Model, criteria, callback) {
     Model.findOne(criteria, (err, ret) => {
+        if (err) {
+            console.error(err);
+        }
+        callback(err, ret)
+    })
+}
+
+/**
+ * 条件查询一条
+ * @param {*} Model 
+ * @param {*} criteria 
+ * @param {*} callback 
+ */
+function findById(Model, _id, callback) {
+    Model.findById(_id, (err, ret) => {
+        if (err) {
+            console.error(err);
+        }
         callback(err, ret)
     })
 }
@@ -57,6 +76,9 @@ function findOne(Model, criteria, callback) {
  */
 function find(Model, criteria, callback) {
     Model.find(criteria, (err, ret) => {
+        if (err) {
+            console.error(err);
+        }
         callback(err, ret)
     })
 }
@@ -69,6 +91,9 @@ function find(Model, criteria, callback) {
  */
 function removeById(Model, id, callback) {
     findOne(Model, { _id: id }, (err, ret) => {
+        if (err) {
+            console.error(err);
+        }
         ret.remove().then((product) => {
             callback(product)
         }).catch(function (err) {
@@ -83,3 +108,4 @@ module.exports.insert = insert;
 module.exports.findOne = findOne;
 module.exports.find = find;
 module.exports.removeById = removeById;
+module.exports.findById = findById;

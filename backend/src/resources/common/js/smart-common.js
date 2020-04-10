@@ -48,6 +48,11 @@ smart.ajax = function (config) {
 		//1.程序员回调函数
 		smart.exeFun(successFun, data, textStatus, jqXHR);
 	}
+
+	config.error = function (data, textStatus, jqXHR) {
+		//1.程序员回调函数
+		smart.exeFun(successFun, data, textStatus, jqXHR);
+	}
 	/**
 	 * 1.jqXHR jquery 以xmlHTTPRequest为基础封装出来的对象
 	 * 2.textStatus:服务器返回的状态值
@@ -71,101 +76,101 @@ smart.ajax = function (config) {
 				 */
 				if (jqXHR.status == 401) {
 
-				}
-				/**
-				 * 异常代码403，含义：访问指定功能时权限不足
-				 * 处理方式：
-				 * 告知用户没有权限做此操作
-				 */
-				else if (jqXHR.status == 403) {
-					smart.showInfoTip("权限不足");
-					return;
-				}
-				/**
-				 * 异常代码404，含义：未找到页面或功能
-				 * 处理方式：
-				 * 告知用户未找到页面或功能
-				 */
-				else if (jqXHR.status == 404) {
-					smart.showErrorTip("路径未找到");
-					return;
-				}
-				else if (jqXHR.status == 500) {//服务器异常
-					//从html中截取有效地错误信息
-					if (text.indexOf("<html>") >= 0) {
-						var start = text.indexOf("<pre>"),
-							end = text.indexOf("</pre>");
-						text = text.substring(start, end + 6);
-					}
-					smart.showExceptionWindow(500, text);
-				}
-				/**
-				 * 异常代码631，含义：出现业务异常
-				 * 处理方式：
-				 * 告知用户业务异常内容
-				 */
-				else if (jqXHR.status == 631) {
-					smart.showExceptionWindow(631, text.substr(61));
-				}
-				/**
-				 * 异常代码632，含义：校验异常
-				 * 处理方式：
-				 * 框架吸收该异常并将异常在界面中显示出来
-				 */
-				else if (jqXHR.status == 632) {
-					var validateObj = Ext.JSON.decode(text);
-					if (validateObj != null && path != null) {
-						smart.processValidateData(validateObj, path);
-					}
-				}
-				/**
-				 * 异常代码633，
-				 * 处理方式：
-				 * 将异常信息展示出来
-				 * 特意声明该异常原因：
-				 * jersey框架的异常基类为WebApplicationException,该基类下面有3个直接子类,
-				 *   (1)ConflictException 冲突异常  jersey默认抛出409编码，符合HTTP标准
-				 *   (2)NotFoundException 方法未找到异常  jersey默认抛出404编码，符合HTTP标准
-				 *   (1)ParamException 参数异常  jersey默认抛出404编码
-				 *   可以看到参数异常导致的后台方法找不到会被jersey认为是找不到后台方法，
-				 *   这样不利于我们去分析什么样的参数不对导致了后台错误，会延长对异常的分析时间，
-				 *   为了更明确的获知错误明细，因此修改了jersey对paramException的默认处理
-				 */
-				else if (jqXHR.status == 633) {
-					smart.showExceptionWindow(633, text);
-				}
-				else
-					unexpectedException = true;
-			}
-			else {
-				unexpectedException = true;
-			}
-			if (unexpectedException) {//出现非预期异常，将异常状态值、状态码和状态消息提示出来
-				var readyStateText = "";
-				if (jqXHR.readyState == 0) {
-					readyStateText = "异常0";
-				}
-				else if (jqXHR.readyState == 1) {
-					readyStateText = "异常1";
-				}
-				else if (jqXHR.readyState == 2) {
-					readyStateText = "异常2";
-				}
-				else if (jqXHR.readyState == 3) {
-					readyStateText = "异常3";
-				}
-				else if (jqXHR.readyState == 4) {
-					readyStateText = "异常4";
-				}
-				smart.showErrorTip("异常", "&nbsp;&nbsp;&nbsp;异常信息" +
-					": " + readyStateText + "<br/>&nbsp;&nbsp;&nbsp;异常代码： " + jqXHR.status
-					+ "<br/>异常内容: " + jqXHR.statusText + "</br>如果状态码为200，请查看后台接口是否有返回值，如果没有返回值，ajax中的dataType请设置为text而非json！");
-				return;
-			}
-		}
-		//执行程序员的错误处理函数
-		smart.exeFun(errorFun, jqXHR, textStatus, errorThrown);
-	}
+	// 			}
+	// 			/**
+	// 			 * 异常代码403，含义：访问指定功能时权限不足
+	// 			 * 处理方式：
+	// 			 * 告知用户没有权限做此操作
+	// 			 */
+	// 			else if (jqXHR.status == 403) {
+	// 				smart.showInfoTip("权限不足");
+	// 				return;
+	// 			}
+	// 			/**
+	// 			 * 异常代码404，含义：未找到页面或功能
+	// 			 * 处理方式：
+	// 			 * 告知用户未找到页面或功能
+	// 			 */
+	// 			else if (jqXHR.status == 404) {
+	// 				smart.showErrorTip("路径未找到");
+	// 				return;
+	// 			}
+	// 			else if (jqXHR.status == 500) {//服务器异常
+	// 				//从html中截取有效地错误信息
+	// 				if (text.indexOf("<html>") >= 0) {
+	// 					var start = text.indexOf("<pre>"),
+	// 						end = text.indexOf("</pre>");
+	// 					text = text.substring(start, end + 6);
+	// 				}
+	// 				smart.showExceptionWindow(500, text);
+	// 			}
+	// 			/**
+	// 			 * 异常代码631，含义：出现业务异常
+	// 			 * 处理方式：
+	// 			 * 告知用户业务异常内容
+	// 			 */
+	// 			else if (jqXHR.status == 631) {
+	// 				smart.showExceptionWindow(631, text.substr(61));
+	// 			}
+	// 			/**
+	// 			 * 异常代码632，含义：校验异常
+	// 			 * 处理方式：
+	// 			 * 框架吸收该异常并将异常在界面中显示出来
+	// 			 */
+	// 			else if (jqXHR.status == 632) {
+	// 				var validateObj = Ext.JSON.decode(text);
+	// 				if (validateObj != null && path != null) {
+	// 					smart.processValidateData(validateObj, path);
+	// 				}
+	// 			}
+	// 			/**
+	// 			 * 异常代码633，
+	// 			 * 处理方式：
+	// 			 * 将异常信息展示出来
+	// 			 * 特意声明该异常原因：
+	// 			 * jersey框架的异常基类为WebApplicationException,该基类下面有3个直接子类,
+	// 			 *   (1)ConflictException 冲突异常  jersey默认抛出409编码，符合HTTP标准
+	// 			 *   (2)NotFoundException 方法未找到异常  jersey默认抛出404编码，符合HTTP标准
+	// 			 *   (1)ParamException 参数异常  jersey默认抛出404编码
+	// 			 *   可以看到参数异常导致的后台方法找不到会被jersey认为是找不到后台方法，
+	// 			 *   这样不利于我们去分析什么样的参数不对导致了后台错误，会延长对异常的分析时间，
+	// 			 *   为了更明确的获知错误明细，因此修改了jersey对paramException的默认处理
+	// 			 */
+	// 			else if (jqXHR.status == 633) {
+	// 				smart.showExceptionWindow(633, text);
+	// 			}
+	// 			else
+	// 				unexpectedException = true;
+	// 		}
+	// 		else {
+	// 			unexpectedException = true;
+	// 		}
+	// 		if (unexpectedException) {//出现非预期异常，将异常状态值、状态码和状态消息提示出来
+	// 			var readyStateText = "";
+	// 			if (jqXHR.readyState == 0) {
+	// 				readyStateText = "异常0";
+	// 			}
+	// 			else if (jqXHR.readyState == 1) {
+	// 				readyStateText = "异常1";
+	// 			}
+	// 			else if (jqXHR.readyState == 2) {
+	// 				readyStateText = "异常2";
+	// 			}
+	// 			else if (jqXHR.readyState == 3) {
+	// 				readyStateText = "异常3";
+	// 			}
+	// 			else if (jqXHR.readyState == 4) {
+	// 				readyStateText = "异常4";
+	// 			}
+	// 			smart.showErrorTip("异常", "&nbsp;&nbsp;&nbsp;异常信息" +
+	// 				": " + readyStateText + "<br/>&nbsp;&nbsp;&nbsp;异常代码： " + jqXHR.status
+	// 				+ "<br/>异常内容: " + jqXHR.statusText + "</br>如果状态码为200，请查看后台接口是否有返回值，如果没有返回值，ajax中的dataType请设置为text而非json！");
+	// 			return;
+	// 		}
+	// 	}
+	// 	//执行程序员的错误处理函数
+	// 	smart.exeFun(errorFun, jqXHR, textStatus, errorThrown);
+	// }
 	//当用户取消开启框架错误函数处理时，关闭框架错误函数
 	if (config.callFrameError === false) {
 		config.error = errorFun;

@@ -1,12 +1,8 @@
 const express = require('express')
-const moment = require('moment')
-const { v4 } = require('uuid')
 
 const router = express.Router()
 let Course = require('../domain/Course')
 const courseCrud = require('../repository/CourseCrud')
-
-const uuid = v4;
 
 router.get('/quickstart/condition.do', function (req, res) {
     console.log('条件查询req.url', req.url)
@@ -18,9 +14,6 @@ router.get('/quickstart/condition.do', function (req, res) {
     }
     courseCrud.find(Course, obj,
         (err, ret) => {
-            if (err) {
-                throw err;
-            }
             const data = JSON.stringify({
                 data: ret,
                 pagingBean: {
@@ -34,15 +27,41 @@ router.get('/quickstart/condition.do', function (req, res) {
 
 router.get('/quickstart/detail.do/:id', function (req, res) {
     console.log('detail req.url', req.url)
-    const item = data.data.find(item => item.id == req.params.id)
-    res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify(item))
+    console.log('detail req.params.id', req.params.id)
+    courseCrud.findById(Course, req.params.id, (err, ret) => {
+        res.setHeader('Content-Type', 'application/json')
+        res.end(JSON.stringify(ret))
+    })
+})
+
+router.get('/quickstart/enable.do/:id', function (req, res) {
+    console.log('enable.do, req.params.id', req.params.id)
+    const course = {
+        _id: req.params.id,
+        status: '1'
+    }
+    courseCrud.updateById(Course, course._id, course, (err, ret) => {
+        res.setHeader('Content-Type', 'application/json')
+        res.end('ok')
+    })
+})
+router.get('/quickstart/disable.do/:id', function (req, res) {
+    console.log('disable.do, req.params.id', req.params.id)
+    const course = {
+        _id: req.params.id,
+        status: '0'
+    }
+    courseCrud.updateById(Course, course._id, course, (err, ret) => {
+        res.setHeader('Content-Type', 'application/json')
+        res.end('ok')
+    })
 })
 
 router.post('/quickstart/add.do', function (req, res) {
     console.log('add req.url', req.url)
     console.log('add req.body', req.body)
     const course = {
+        _id: req.body._id,
         title: req.body.title,
         type: req.body.type,
         priority: req.body.priority,
@@ -50,12 +69,18 @@ router.post('/quickstart/add.do', function (req, res) {
         content: req.body.content,
         order: req.body.order,
         url: req.body.url,
-        local: req.body.local.join(','),
+        local: (typeof req.body.local === 'string') ? req.body.local : req.body.local.join(','),
         status: req.body.status
     }
-    courseCrud.insert(Course, course, () => {
-        res.end()
-    })
+    if (course._id) {
+        courseCrud.updateById(Course, course._id, course, (err, ret) => {
+            res.end()
+        })
+    } else {
+        courseCrud.insert(Course, course, (err, ret) => {
+            res.end()
+        })
+    }
 })
 
 router.mongoose = (mongoose) => {

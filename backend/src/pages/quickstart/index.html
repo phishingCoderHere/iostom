@@ -58,7 +58,7 @@
     <!-- ace scripts -->
     <script src="./resources/assets/js/ace-elements.min.js"></script>
     <script src="./resources/assets/js/ace.min.js"></script>
-    <script src="./resources/common/ztree/jquery.ztree.all.js"></script>
+    <!-- <script src="./resources/common/ztree/jquery.ztree.all.js"></script> -->
     <script src="./resources/assets/js/bootbox.js"></script>
     <script src="./resources/assets/js/datatables.js"></script>
     <script src="./resources/assets/js/select2.min.js"></script>
@@ -183,16 +183,12 @@
             //     }
             // },
             {
-                data: 'id', title: '<i class="ace-icon bigger-110 fa fa-wrench"></i>操作', render: function (data, type, row, meta) {
-                    let html = `<a class="blue" href="javascript:showInfo(\'' + data + '\');" title="${row.status === '1' ? '作废' : '启用'}" >
-                    ${ row.status === '1' ? '<i class="ace-icon fa fa-times bigger-130"></i>' : '<i clas="ace-icon fa fa-trash bigger-130"></i>'}</a> `
-
-                    console.log(html);
-
-                    return '<div class="hidden-sm hidden-xs action-buttons">' +
-                        '<a class="blue" href="javascript:showInfo(\'' + data + '\');" title="编辑" > <i class="ace-icon fa fa-search-plus bigger-130"></i></a>' +
-                        html +
-                        '</div>';
+                data: '_id', title: '<i class="ace-icon bigger-110 fa fa-wrench"></i>操作', render: function (data, type, row, meta) {
+                    let html = `<a class="blue" href="javascript:openOrClose('${data}', '${row.status}');" title="${row.status === '1' ? '作废' : '启用'}" >
+                    ${ row.status === '1' ? '<i class="ace-icon fa fa-times bigger-130"></i>' : '<i class="ace-icon fa fa-check bigger-130"></i>'}</a> `
+                    return `<div class="hidden-sm hidden-xs action-buttons">
+                        <a class="blue" href="javascript:showInfo('${data}');" title="编辑" > <i class="ace-icon fa fa-pencil bigger-130"></i></a>
+                        ${html} </div>`;
                 }
             }
         ],
@@ -231,7 +227,7 @@
     }
 
     var changeStatus = function (id, status) {
-        smart.ajax({
+        $.ajax({
             contentType: 'application/json',
             dataType: 'text',
             url: '${ctx}/wzz/camera/changestatus.do?id=' + id + "&status=" + status,
@@ -268,11 +264,11 @@
     var showInfo = function (qsId) {
         $('#editModal').modal('show');
         $('#editForm')[0].reset();
-        smart.ajax({
+        $.ajax({
             contentType: 'application/json',// 声明提交的数据类型
             dataType: 'json',// 声明请求的数据类型
             type: "GET",
-            url: `quickstart / detail.do / ${qsId} `,
+            url: `quickstart/detail.do/${qsId}`,
             success: data => {
                 smart.setFormValues('editForm', data);
             }
@@ -280,6 +276,36 @@
             //     smart.showInfoTip('请求失败');
             // }
         });
+    }
+
+    const openOrClose = function (id, status) {
+        if (status === '1') {
+            $.ajax({
+                contentType: 'application/json',// 声明提交的数据类型
+                dataType: 'json',// 声明请求的数据类型
+                type: "GET",
+                url: `quickstart/disable.do/${id}`,
+                success: data => {
+                    getData()
+                },
+                error: function () {// 发生异常时
+                    getData()
+                }
+            });
+        } else {
+            $.ajax({
+                contentType: 'application/json',// 声明提交的数据类型
+                dataType: 'json',// 声明请求的数据类型
+                type: "GET",
+                url: `quickstart/enable.do/${id}`,
+                success: data => {
+                    getData()
+                }
+                , error: function () {// 发生异常时
+                    getData()
+                }
+            });
+        }
     }
 
     function add() {
@@ -290,7 +316,7 @@
     function deleteInfo(cameraId) {
         bootbox.confirm("确定要删除该摄像头信息吗?", function (result) {
             if (result) {
-                smart.ajax({
+                $.ajax({
                     contentType: 'application/json',// 声明提交的数据类型
                     dataType: 'json',// 声明请求的数据类型
                     type: "DELETE",
@@ -308,36 +334,6 @@
                 });
             }
         });
-
-    }
-
-    //获取用户详细信息
-    var getDetailInfo = function (qsId, callback) {
-
-    }
-
-    function info1(data) {
-        smart.setFormValues('editForm', data);
-        drawingManager.close();
-        // $('#form-field-bay-edit').trigger('change');
-        map.clearOverlays();
-        if (data.latitude && data.longitude) {
-            var point = new BMap.Point(data.longitude, data.latitude);
-            var marker = new BMap.Marker(point, markerStyles);
-            marker.addEventListener('dragend', function (e) {
-                saveCoord(e.target)
-            })
-            marker.enableDragging();
-            map.addOverlay(marker);
-        }
-        else {
-            drawingManager.open();
-            drawingManager.setDrawingMode(BMAP_DRAWING_MARKER);
-
-        }
-    }
-
-    function info2(data) {
 
     }
 
