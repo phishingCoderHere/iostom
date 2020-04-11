@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row index-container">
+    <section class="list">
+      <!-- 每个tab页对应的内容 -->
+      <div class="tab-content list-content">
+        <div class="tab-pane fade in active" id="ios">
+          {{each toturials}}
+          {{if $value.status === '1'}}
+          <div class="item">
+            <div class="media">
+              <div class="media-body">
+                <div class="col-xs-8 col-md-8 desc-item">
+                  <div class="row intro-type-2">
+                    <p class="media-heading">{{$value.title}}</p>
+                    <p class="media-content">{{$value.titledesc}}</p>
+                  </div>
+                </div>
+                <div class="col-xs-4 col-md-4 btn-item">
+                  <div class="row"> <a href="{{$value.url}}" class="btn btn-default">查看详情</a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+    </section>
+  </div>
+</div>
