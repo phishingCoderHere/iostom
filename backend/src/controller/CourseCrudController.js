@@ -72,12 +72,13 @@ router.post('/quickstart/add.do', function (req, res) {
         local: (typeof req.body.local === 'string') ? req.body.local : req.body.local.join(','),
         status: req.body.status
     }
-    if (course._id) {
-        courseCrud.updateById(Course, course._id, course, (err, ret) => {
+    if (!course._id) {
+        course._id = undefined
+        courseCrud.insert(Course, course, (err, ret) => {
             res.end()
         })
     } else {
-        courseCrud.insert(Course, course, (err, ret) => {
+        courseCrud.updateById(Course, course._id, course, (err, ret) => {
             res.end()
         })
     }
