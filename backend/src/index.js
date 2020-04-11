@@ -25,7 +25,7 @@ app.use(courseCrudController.mongoose(mongoose))
 const port = 8445
 console.log(' dirname: ' + __dirname + ', 端口：' + port);
 app.listen(port, () => {
-    console.log(`backend server running on port ${port}....`);
+    console.log(`后端已运行在端口号 ${port} 上....`);
     // opens the url in the default browser 
     opn(`http://localhost:${port}`);
 })

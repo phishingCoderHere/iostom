@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "管理系统",
   "scripts": {
-    "start:front": "node ./grontend/src/index.js",
+    "start:front": "node ./frontend/src/index.js",
     "start:server": "node ./backend/src/index.js",
     "build": "webpack --config webpack.config.js"
   },
