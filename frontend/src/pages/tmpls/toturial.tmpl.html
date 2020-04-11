@@ -1,28 +1,30 @@
-<div class="container">
-  <div class="row index-container">
-    <section class="list">
-      <!-- 每个tab页对应的内容 -->
-      <div class="tab-content list-content">
-        <div class="tab-pane fade in active" id="ios">
-          {{each toturials}}
-          {{if $value.status === '1'}}
-          <div class="item">
-            <div class="media">
-              <div class="media-body">
-                <div class="col-xs-8 col-md-8 desc-item">
-                  <div class="row intro-type-2">
-                    <p class="media-heading">{{$value.title}}</p>
-                    <p class="media-content">{{$value.titledesc}}</p>
-                  </div>
-                </div>
-                <div class="col-xs-4 col-md-4 btn-item">
-                  <div class="row"> <a href="{{$value.url}}" class="btn btn-default">查看详情</a> </div>
-                </div>
-              </div>
+<section class="list">
+    <!-- 每个tab页对应的内容 -->
+    <div class="tab-content list-content">
+        <div class="index_r">
+            <span>当前位置：<a href="http://www.iosusb.com/">主页</a> &gt; <a href="https://iosusb.com/xsjc/">新手教程</a> &gt;
+            </span>
+            <h1>{{toturial.title}}</h1>
+            <p style="font-size:12px">时间：{{toturial.ctime}} 栏目：{{toturial.type}} 阅读：102 </p>
+            <hr />
+            <div class="linka">
+                {{toturial.content}}
             </div>
-          </div>
-          {{/if}}
-          {{/each}}
-    </section>
-  </div>
-</div>
+        </div>
+    </div>
+    <div class="prpage">
+        <p>上一篇：<a href="https://iosusb.com/xsjc/2019/1003/48.html">手机上如何赚钱,手机赚钱靠谱的方法</a> </p>
+        <p>下一篇：<a href="https://iosusb.com/xsjc/2019/1003/50.html">手机如何兼职赚钱</a> </p>
+    </div>
+</section>
+<section class="list_v2">
+    <div style="font-size:0.45rem; margin-bottom:0.2rem">
+        相关阅读
+    </div>
+    <div id="tagbc812d485f956e162b07d00fcfd5c579">
+        <li><a href="https://iosusb.com/xsjc/2019/1003/57.html">苹果手机在家如何赚钱？只要有这个些软</a></li>
+        <li><a href="https://iosusb.com/xsjc/2019/1003/63.html">苹果手机如何赚钱？</a></li>
+        <li><a href="https://iosusb.com/xsjc/2019/1003/59.html">苹果试玩无限新手任务是真的吗？</a></li>
+        <li><a href="https://iosusb.com/xsjc/2019/1003/51.html">适合宝妈，大学生的兼职工作，躺着就可</a></li>
+    </div>
+</section>
