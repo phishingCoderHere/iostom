@@ -1,136 +1,141 @@
-<div id='editModal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="col-lg-offset-3 widget-container-col t100" role="document" style="width: 800px">
-        <div class="widget-box">
-            <div class="widget-header">
-                <h5 class="widget-title">编辑</h5>
-                <div class="widget-toolbar">
-                    <a href="#" data-action="collapse">
-                        <i class="ace-icon fa fa-chevron-up"></i>
-                    </a>
-                    <a href="#" data-action="fullscreen" class="orange2">
-                        <i class="ace-icon fa fa-expand"></i>
-                    </a>
-                    <a href="#" data-dismiss="modal" style="color:#E09E96;">
-                        <i class="ace-icon fa fa-times"></i>
-                    </a>
-                </div>
+<div id="editModal" class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="widget-body">
-                <div class="row">
-                    <form autocomplete="off" class="form-horizontal" action="quickstart/add.do" method="POST"
-                        id='editForm' enctype="application/x-www-form-urlencoded">
-                        <div class="col-xs-6">
-                            <div class="form-group col-xs-12">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 标题
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <input name='_id' type="text" class="col-xs-12 col-sm-12 hidden" />
+            <div class="modal-body">
+                <!-- <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form> -->
+                <form autocomplete="off" class="form-horizontal" action="quickstart/add.do" method="POST" id='editForm'
+                    enctype="application/x-www-form-urlencoded">
+                    <div>
+                        <div class="form-group col-xs-12">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 标题
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='_id' type="text" class="col-xs-12 col-sm-12 hidden" />
 
-                                    <input name='title' id="form-field-number" type="text" required="required"
-                                        placeholder="请输入标题..." class="col-xs-12 col-sm-12" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 标题描述
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <input name='titledesc' id="form-field-number" type="text" required="required"
-                                        placeholder="请输入标题描述..." class="col-xs-12 col-sm-12" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 内容
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <textarea name='content' id="form-field-name" type="text" required="required"
-                                        placeholder="请输入编号..." class="col-xs-12 col-sm-12"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right">优先级
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <input name='priority' id="form-field-name" type="number" required="required"
-                                        placeholder="优先级..." class="col-xs-12 col-sm-12"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 顺序号
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <input name='order' id="form-field-name" type="number" required="required"
-                                        placeholder="顺序号..." class="col-xs-12 col-sm-12"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 网址
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <input name='url' id="form-field-name" type="text" required="required"
-                                        placeholder="网址..." class="col-xs-12 col-sm-12"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right">类型
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <select placeholder="请选择港湾..." name="type" id="form-filed-bay-index"
-                                        class="col-xs-12 col-sm-12 ">
-                                        <option label="入门教程" value="1"></option>
-                                        <option label="答疑" value="2"></option>
-                                        <option label="科普" value="3"></option>
-                                        <option label="通知" value="4"></option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-length"> 所在位置（多选）
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <select placeholder="请选择..." multiple name="local" id="form-filed-bay-index"
-                                        class="col-xs-12 col-sm-12 ">
-                                        <option label="默认" value="1"></option>
-                                        <option label="应用页底部" value="2"></option>
-                                        <option label="首页" value="3"></option>
-                                        <option label="特别推荐" value="4"></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 mgt20">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-resp"> 状态
-                                    <span style='color:red;'>*</span></label>
-                                <div class="col-sm-9">
-                                    <select name='status' id="form-field-resp" required="required" placeholder="请选择..."
-                                        class="col-xs-12 col-sm-12">
-                                        <option label="已启用" value="1" aria-checked="true"></option>
-                                        <option label="已禁用" value="0"></option>
-                                    </select>
-                                </div>
+                                <input name='title' id="form-field-number" type="text" required="required"
+                                    placeholder="请输入标题..." class="col-xs-12 col-sm-12" />
                             </div>
                         </div>
-                        <div class="form-group col-xs-12 mgt10 center">
-                            <button type="button" class="btn btn-success btn-xs radius5" onclick="submitForm()"><span
-                                    class='fa fa-save'></span>保存</button>
-                            <button type="button" class="btn btn-warning btn-xs radius5 mgl20"
-                                data-dismiss="modal"><span class='fa fa-reply'></span>取消</button>
+                        <div class="form-group col-xs-12">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 标题描述
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='titledesc' id="form-field-number" type="text" required="required"
+                                    placeholder="请输入标题描述..." class="col-xs-12 col-sm-12" />
+                            </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right">优先级
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='priority' id="form-field-name" type="number" required="required"
+                                    placeholder="优先级..." class="col-xs-12 col-sm-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 顺序号
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='order' id="form-field-name" type="number" required="required"
+                                    placeholder="顺序号..." class="col-xs-12 col-sm-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 网址
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='url' id="form-field-name" type="text" required="required"
+                                    placeholder="网址..." class="col-xs-12 col-sm-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right">类型
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <select placeholder="请选择港湾..." name="type" id="form-filed-bay-index"
+                                    class="col-xs-12 col-sm-12 ">
+                                    <option label="入门教程" value="1"></option>
+                                    <option label="答疑" value="2"></option>
+                                    <option label="科普" value="3"></option>
+                                    <option label="通知" value="4"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-length"> 所在位置（多选）
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <select placeholder="请选择..." multiple name="local" id="form-filed-bay-index"
+                                    class="col-xs-12 col-sm-12 ">
+                                    <option label="默认" value="1"></option>
+                                    <option label="应用页底部" value="2"></option>
+                                    <option label="首页" value="3"></option>
+                                    <option label="特别推荐" value="4"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-resp"> 状态
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <select name='status' id="form-field-resp" required="required" placeholder="请选择..."
+                                    class="col-xs-12 col-sm-12">
+                                    <option label="已启用" value="1" aria-checked="true"></option>
+                                    <option label="已禁用" value="0"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+
+                            <div id="content"></div>
+                            <input style="display: none;" type="text" name="content">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 mgt10 center">
+
+                    </div>
+                </form>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-xs radius5" onclick="submitForm()"><span
+                        class='fa fa-save'></span>保存</button>
+                <button type="button" class="btn btn-warning btn-xs radius5 mgl20" data-dismiss="modal"><span
+                        class='fa fa-reply'></span>取消</button>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.modal -->
 <script type="text/javascript" src="./resources/assets/js/jquery-form.js"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
 <script>
+    /**
+     * 富文本编辑器初始化
+     * **/
+    var E = window.wangEditor
+    var editor = new E('#content')
+    editor.create()
 
-    // 弹窗显示事件
-    // 由于在fade下,shown.bs.modal不触发,故使用show.bs.modal代替
-    $('#editModal').on('show.bs.modal', function () {
-        console.log('show.bs.modal');
-
-    })
+    const getEditorContent = () => {
+        return editor.txt.html()
+    }
 
     //表单提交
     var submitForm = function () {
@@ -139,7 +144,9 @@
         }
 
         $('#editForm').ajaxSubmit({
-
+            data: {
+                content: getEditorContent()
+            },
             beforeSend: function () {
 
             },
@@ -156,5 +163,4 @@
             }
         });
     }
-
 </script>

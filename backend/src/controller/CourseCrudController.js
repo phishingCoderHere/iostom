@@ -7,7 +7,7 @@ const courseCrud = require('../repository/CourseCrud')
 router.get('/quickstart/condition.do', function (req, res) {
     console.log('条件查询req.url', req.url)
     console.log('条件查询req.query', req.query)
-    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Content-Type', 'application/json;charset=utf-8')
     const obj = {}
     if (req.query.title) {//title：模糊查询
         obj.title = { $regex: `.*${req.query.title}.*`, $options: 'i' }
@@ -30,6 +30,9 @@ router.get('/quickstart/detail.do/:id', function (req, res) {
     console.log('detail req.params.id', req.params.id)
     courseCrud.findById(Course, req.params.id, (err, ret) => {
         res.setHeader('Content-Type', 'application/json')
+        const content = JSON.parse(ret.content)
+        //因为wangEditor存储时是存的修改记录的数组，所以每次取最新的
+        ret.content = content[content.length - 1]
         res.end(JSON.stringify(ret))
     })
 })
@@ -66,7 +69,7 @@ router.post('/quickstart/add.do', function (req, res) {
         type: req.body.type,
         priority: req.body.priority,
         titledesc: req.body.titledesc,
-        content: req.body.content,
+        content: JSON.stringify(req.body.content),
         order: req.body.order,
         url: req.body.url,
         local: (typeof req.body.local === 'string') ? req.body.local : req.body.local.join(','),

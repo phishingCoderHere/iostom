@@ -46,13 +46,20 @@ router.get('/xinshou', function (req, res) {
     console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
     console.log('新手页面');
     httpUtils.sendRequest('localhost', '/quickstart/condition.do', 'GET', 8445, (data) => {
-        let result = JSON.parse(data.toString('utf8'))
+        let result = JSON.parse(data.toString('utf-8'))
         res.render('framework.html', {
             tmpl: './tmpls/toturiallist.tmpl.html',
             data: {
                 toturials: result.data
             }
         })
+    })
+})
+
+router.get('/wangeditor', function (req, res) {
+
+    res.render('wangeditordemo.html', {
+
     })
 })
 module.exports = router;

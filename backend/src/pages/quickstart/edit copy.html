@@ -1,0 +1,72 @@
+<div id='editModal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="col-lg-offset-3 widget-container-col t100" role="document">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h5 class="widget-title">编辑</h5>
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-up"></i>
+                    </a>
+                    <a href="#" data-action="fullscreen" class="orange2">
+                        <i class="ace-icon fa fa-expand"></i>
+                    </a>
+                    <a href="#" data-dismiss="modal" style="color:#E09E96;">
+                        <i class="ace-icon fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="row">
+
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="text/javascript" src="./resources/assets/js/jquery-form.js"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script>
+
+
+    /**
+     * 富文本编辑器初始化
+     * **/
+    var E = window.wangEditor
+    var editor = new E('#content')
+    editor.create()
+
+    // 弹窗显示事件
+    // 由于在fade下,shown.bs.modal不触发,故使用show.bs.modal代替
+    $('#editModal').on('show.bs.modal', function () {
+        console.log('show.bs.modal');
+
+    })
+
+    //表单提交
+    var submitForm = function () {
+        if (!smart.validForm('editForm')) {
+            return;
+        }
+
+        $('#editForm').ajaxSubmit({
+
+            beforeSend: function () {
+
+            },
+            uploadProgress: function () {
+
+            },
+            success: function (data) {
+                $('#editModal').modal('hide');
+                smart.showSuccessTip('保存成功');
+                getData();
+            },
+            error: function (xhr) {
+                smart.showErrorTip('保存失败');
+            }
+        });
+    }
+
+
+</script>

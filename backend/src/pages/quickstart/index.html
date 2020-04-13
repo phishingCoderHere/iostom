@@ -65,7 +65,7 @@
     <script src="./resources/common/js/smart-common.js"></script>
 
     <![endif]-->
-    <link rel="stylesheet" href="./resources/common/css/main.css"/>
+    <!-- <link rel="stylesheet" href="./resources/common/css/main.css"/> -->
     <link rel="stylesheet" href="./resources/assets/css/datatables.css"/>
     <link rel="stylesheet" href="./resources/assets/css/select2.min.css"/>
 
@@ -271,6 +271,7 @@
             url: `quickstart/detail.do/${qsId}`,
             success: data => {
                 smart.setFormValues('editForm', data);
+                editor.txt.html(data.content)
             }
             // error: function () {// 发生异常时
             //     smart.showInfoTip('请求失败');
