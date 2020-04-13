@@ -11,6 +11,7 @@ const uuid = v4
  * @param {*} callback 
  */
 function updateById(Model, id, entity, callback) {
+    console.log('updateById 时间', new Date())
     const common = {
         utime: moment(),
     }
@@ -30,6 +31,7 @@ function updateById(Model, id, entity, callback) {
  * @param {*} callback 
  */
 function insert(Model, row, callback) {
+    console.log('insert 时间', new Date())
     const common = {
         ctime: moment(),
         utime: moment(),
@@ -45,6 +47,7 @@ function insert(Model, row, callback) {
  * @param {*} callback 
  */
 function findOne(Model, criteria, callback) {
+    console.log('findOne 时间', new Date())
     Model.findOne(criteria, (err, ret) => {
         if (err) {
             console.error(err);
@@ -60,6 +63,7 @@ function findOne(Model, criteria, callback) {
  * @param {*} callback 
  */
 function findById(Model, _id, callback) {
+    console.log('findById 时间', new Date())
     Model.findById(_id, (err, ret) => {
         if (err) {
             console.error(err);
@@ -75,6 +79,7 @@ function findById(Model, _id, callback) {
  * @param {*} callback 
  */
 function find(Model, criteria, callback) {
+    console.log('find 时间', new Date())
     Model.find(criteria, (err, ret) => {
         if (err) {
             console.error(err);
