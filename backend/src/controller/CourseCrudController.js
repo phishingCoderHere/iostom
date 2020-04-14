@@ -31,8 +31,10 @@ router.get('/quickstart/detail.do/:id', function (req, res) {
     courseCrud.findById(Course, req.params.id, (err, ret) => {
         res.setHeader('Content-Type', 'application/json')
         const content = JSON.parse(ret.content)
-        //因为wangEditor存储时是存的修改记录的数组，所以每次取最新的
-        ret.content = content[content.length - 1]
+        if (typeof content === 'object') {//兼容旧内容
+            //因为wangEditor存储时是存的修改记录的数组，所以每次取最新的
+            ret.content = content[content.length - 1]
+        }
         res.end(JSON.stringify(ret))
     })
 })
