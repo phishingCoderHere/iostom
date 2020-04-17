@@ -1,0 +1,33 @@
+        var fontS = document.documentElement.clientWidth / 10;
+
+
+
+            fontS = fontS > 41.4 ? 37.5 : fontS;
+
+
+
+            fontS = fontS < 32 ? 32 : fontS;
+
+
+
+        document.documentElement.style.fontSize=fontS+'px';
+
+
+
+        window.onresize=function(){
+
+
+
+            fontS = document.documentElement.clientWidth / 10;
+
+
+
+            fontS = fontS > 41.4 ? 37.5 : fontS;
+
+
+
+            document.documentElement.style.fontSize=fontS+'px';
+
+
+
+        };

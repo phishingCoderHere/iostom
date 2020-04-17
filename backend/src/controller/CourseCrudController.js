@@ -64,7 +64,7 @@ router.get('/quickstart/disable.do/:id', function (req, res) {
 
 router.post('/quickstart/add.do', function (req, res) {
     console.log('add req.url', req.url)
-    console.log('add req.body', req.body)
+    // console.log('add req.body', req.body)
     const course = {
         _id: req.body._id,
         title: req.body.title,
@@ -87,6 +87,11 @@ router.post('/quickstart/add.do', function (req, res) {
             res.end()
         })
     }
+})
+
+router.get('/app', function (req, res) {
+    console.log('主页req.url', req.url)
+    res.render('quickstart/index.html')
 })
 
 router.mongoose = (mongoose) => {
