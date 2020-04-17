@@ -296,7 +296,7 @@ body {
 }
 
 .container .index-container .list .list-content .item .media .media-body .btn-item .btn {
-	margin-top: .4rem;
+	margin-top: 0.8rem;;
 	border: 1px solid #fc3e37;
 	font-size: .32rem;
 	border-radius: .16rem;
