@@ -9,6 +9,14 @@ let App = require('../domain/App')
 const appCrud = require('../repository/AppCrud')
 
 /**
+ * 渲染应用试玩
+ */
+router.get('/app', function (req, res) {
+    console.log('渲染应用试玩 req.url', req.url)
+    res.render('app/index.html')
+})
+
+/**
  * 条件查询
  */
 router.get('/app/condition.do', function (req, res) {
@@ -19,6 +27,8 @@ router.get('/app/condition.do', function (req, res) {
     if (req.query.title) {//title：模糊查询
         obj.title = { $regex: `.*${req.query.title}.*`, $options: 'i' }
     }
+    console.log('appCrud', appCrud);
+
     appCrud.find(App, obj,
         (err, ret) => {
             const data = JSON.stringify({

@@ -1,0 +1,114 @@
+<div id="editModal" class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新建</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off" class="form-horizontal" action="app/add.do" method="POST" id='editForm'
+                    enctype="application/x-www-form-urlencoded">
+                    <div>
+                        <div class="form-group col-xs-12">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 标题
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='_id' type="text" class="col-xs-12 col-sm-12 hidden" />
+
+                                <input name='title' id="form-field-number" type="text" required="required"
+                                    placeholder="请输入标题..." class="col-xs-12 col-sm-12" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 标题描述
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='titledesc' id="form-field-number" type="text" required="required"
+                                    placeholder="请输入标题描述..." class="col-xs-12 col-sm-12" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right">平台
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <select placeholder="请选择平台..." name="type" id="form-filed-bay-index" required="required"
+                                    class="col-xs-12 col-sm-12 ">
+                                    <option label="苹果" value="1"></option>
+                                    <option label="安卓" value="2"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right">排序
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='order' id="form-field-name" type="number" required="required"
+                                    placeholder="排序..." class="col-xs-12 col-sm-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-name"> 网址
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input name='url' id="form-field-name" type="text" required="required"
+                                    placeholder="网址..." class="col-xs-12 col-sm-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-resp"> 特点
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <select name='feature' id="form-field-resp" required="required" placeholder="请选择..."
+                                    class="col-xs-12 col-sm-12">
+                                    <option label="提现快" value="1" aria-checked="true"></option>
+                                    <option label="体验好" value="2"></option>
+                                    <option label="任务多" value="3"></option>
+                                    <option label="单价高" value="4"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-xs radius5" onclick="submitForm()"><span
+                        class='fa fa-save'></span>保存</button>
+                <button type="button" class="btn btn-warning btn-xs radius5 mgl20" data-dismiss="modal"><span
+                        class='fa fa-reply'></span>取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./resources/assets/js/jquery-form.js"></script>
+<script>
+
+    //表单提交
+    var submitForm = function () {
+        console.log('submit');
+
+        if (!smart.validForm('editForm')) {
+            return;
+        }
+
+        $('#editForm').ajaxSubmit({
+
+            beforeSend: function () {
+
+            },
+            uploadProgress: function () {
+
+            },
+            success: function (data) {
+                $('#editModal').modal('hide');
+                smart.showSuccessTip('保存成功');
+                getData();
+            },
+            error: function (xhr) {
+                smart.showErrorTip('保存失败');
+            }
+        });
+    }
+</script>

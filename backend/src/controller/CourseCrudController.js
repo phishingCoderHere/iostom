@@ -89,11 +89,6 @@ router.post('/quickstart/add.do', function (req, res) {
     }
 })
 
-router.get('/app', function (req, res) {
-    console.log('主页req.url', req.url)
-    res.render('quickstart/index.html')
-})
-
 router.mongoose = (mongoose) => {
     Course = Course(mongoose)
     return router
