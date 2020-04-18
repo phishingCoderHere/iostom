@@ -20,17 +20,14 @@ router.get('/app', function (req, res) {
  * 条件查询
  */
 router.get('/app/condition.do', function (req, res) {
-    console.log('条件查询req.url', req.url)
-    console.log('条件查询req.query', req.query)
+    console.log('条件查询req.url req.query', req.url, req.query)
     res.setHeader('Content-Type', 'application/json;charset=utf-8')
     const obj = {}
     if (req.query.title) {//title：模糊查询
         obj.title = { $regex: `.*${req.query.title}.*`, $options: 'i' }
     }
-    console.log('appCrud', appCrud);
-
-    appCrud.find(App, obj,
-        (err, ret) => {
+    appCrud.find({
+        Model: App, criteria: obj, callback: (err, ret) => {
             const data = JSON.stringify({
                 data: ret,
                 pagingBean: {
@@ -38,8 +35,8 @@ router.get('/app/condition.do', function (req, res) {
                 }
             })
             res.end(data)
-        }
-    )
+        }, sort: { 'order': 1 }
+    })
 })
 
 /**
@@ -96,8 +93,10 @@ router.post('/app/add.do', function (req, res) {
         titledesc: req.body.titledesc,//简单描述
         order: req.body.order,//排序
         url: req.body.url,//地址
-        status: req.body.status,//1：启用 0.禁用
-        feature: req.body.feature
+        status: '1',//1：启用 0.禁用
+        feature: req.body.feature,
+        imgurl: req.body.imgurl,//图片url
+        title: req.body.title,//标题
     }
     if (!app._id) {
         app._id = undefined

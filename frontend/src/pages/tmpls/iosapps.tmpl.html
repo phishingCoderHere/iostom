@@ -4,7 +4,35 @@
             <p style="text-align:center"><span
                     class="top-text">&nbsp;&nbsp;&nbsp;&nbsp;</span>各大试玩平台15:00~17:00时间段任务应用最多 </p>
             <div class="tab-pane fade in active" id="ios">
+                {{each apps}}
+                {{if $value.status === '1'}}
                 <div class="item">
+                    <div class="media">
+                        <div class="media-left">
+                            <a alt="iMoney" title="iMoney" href="{{$value.url}}"><img class="media-object"
+                                    src="{{$value.imgurl}}" alt="{{$value.feature}}" /></a>
+                        </div>
+                        <div class="media-body">
+                            <div class="col-xs-8 col-md-8 desc-item">
+                                <div class="row intro-type-2">
+                                    <p class="media-heading">
+                                        <span>{{$value.title}}</span>
+                                        <span class="sign sign2 fs10">{{$value.feature}}</span>
+                                    </p>
+                                    <p class="media-content">{{$value.titledesc}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-md-4 btn-item">
+                                <div class="row">
+                                    <a href="{{$value.url}}" title="{{$value.title}}" class="btn btn-default">开始赚钱</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+                <!-- <div class="item">
                     <div class="media">
                         <div class="media-left">
                             <a alt="iMoney" title="iMoney"
@@ -172,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 馅饼试玩 -->
+             
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -196,7 +224,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 馅饼试玩 -->
+               
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -220,7 +248,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 芒果试玩 -->
+               
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -245,7 +273,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 蝉试客-->
+               
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -269,7 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 秒赚试玩-->
+               
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -294,7 +322,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 掉钱眼-->
+              
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -319,7 +347,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 小桔试玩-->
+               
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -344,7 +372,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 小鱼赚钱-->
+             
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -370,7 +398,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 今日赚-->
+                
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -395,7 +423,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 首富赚钱-->
+               
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -419,9 +447,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <a href="https://www.iostom.com/ios" title="查看更多试玩平台">
+            <a href="http://www.iostom.com/ios" title="查看更多试玩平台">
                 <p class="moder">更多试玩平台</p>
             </a>
         </div>
