@@ -4,3 +4,5 @@ package-lock.json
 *.psd
 *.log
 *.out
+*.code-workspace
+/.vscode
