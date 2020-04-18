@@ -5,6 +5,7 @@
                     class="top-text">&nbsp;&nbsp;&nbsp;&nbsp;</span>各大试玩平台15:00~17:00时间段任务应用最多 </p>
             <div class="tab-pane fade in active" id="ios">
                 {{each apps}}
+                {{if $value.status === '1'}}
                 <div class="item">
                     <div class="media">
                         <div class="media-left">
@@ -29,6 +30,7 @@
                         </div>
                     </div>
                 </div>
+                {{/if}}
                 {{/each}}
                 <!-- <div class="item">
                     <div class="media">

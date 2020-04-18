@@ -93,7 +93,7 @@ router.post('/app/add.do', function (req, res) {
         titledesc: req.body.titledesc,//简单描述
         order: req.body.order,//排序
         url: req.body.url,//地址
-        status: req.body.status,//1：启用 0.禁用
+        status: '1',//1：启用 0.禁用
         feature: req.body.feature,
         imgurl: req.body.imgurl,//图片url
         title: req.body.title,//标题
