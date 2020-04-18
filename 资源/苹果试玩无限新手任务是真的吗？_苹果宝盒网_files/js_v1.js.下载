@@ -1,8 +1,0 @@
-!function(e){var t={};function n(o){if(t[o])return t[o].exports;var i=t[o]={i:o,l:!1,exports:{}};return e[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:o})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=2)}({2:function(e,t,n){e.exports=n("OolR")},OolR:function(e,t){$(function(){if(window.isMobile=!!/mobile/i.test(navigator.userAgent)&&!/ipad/i.test(navigator.userAgent),window.isIOS=/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent),window.isAndroid=/(Android)/i.test(navigator.userAgent),window.isWechat=/micromessenger/i.test(navigator.userAgent),$(".index-container").length){var e=$("#banner-list"),t=new Hammer(e[0]);t.on("swipeleft",function(){e.carousel("next")}),t.on("swiperight",function(){e.carousel("prev")}),$(".marquee").marquee({duration:9e3,gap:50,delayBeforeStart:0,direction:"left",duplicated:!0}),!isWechat&&isMobile||($(window).scroll(function(){$(this).scrollTop()>50?$(".back-top").fadeIn():$(".back-top").fadeOut()}),$(".back-top").click(function(){return $("body,html").animate({scrollTop:0},800),!1}))}})}});
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?b8b05d4d90e04311fcaa0f358eae90d3";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
