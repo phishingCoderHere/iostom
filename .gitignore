@@ -2,6 +2,7 @@
 /dist
 package-lock.json
 
+/other
 /.vscode
 *.psd
 *.log
