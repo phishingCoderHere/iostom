@@ -7,24 +7,19 @@ router.get('/', function (req, res) {
     console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
     res.render('mainpage.html')
 })
-router.get('/ios', function (req, res) {
-    console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
-    res.render('framework.html', {
-        tmpl: './tmpls/iosapps.tmpl.html'
-    })
-})
+
 router.get('/kefu', function (req, res) {
     console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
     res.render('framework.html', {
         tmpl: './tmpls/kefu.tmpl.html'
     })
 })
-router.get('/bidu', function (req, res) {
-    console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
-    res.render('framework.html', {
-        tmpl: './tmpls/how.tmpl.html'
-    })
-})
+// router.get('/bidu', function (req, res) {
+//     console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
+//     res.render('framework.html', {
+//         tmpl: './tmpls/how.tmpl.html'
+//     })
+// })
 router.get('/jiaocheng/:id', function (req, res) {
     const id = req.params.id
     console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
