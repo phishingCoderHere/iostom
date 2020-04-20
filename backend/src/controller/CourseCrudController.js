@@ -4,7 +4,15 @@ const router = express.Router()
 let Course = require('../domain/Course')
 const courseCrud = require('../repository/CourseCrud')
 
-router.get('/quickstart/condition.do', function (req, res) {
+/**
+ * 渲染入门教程页
+ */
+router.get('*/course', function (req, res) {
+    console.log('主页req.url', req.url)
+    res.render('course/index.html')
+})
+
+router.get('*/course/condition.do', function (req, res) {
     console.log('条件查询req.url', req.url)
     console.log('条件查询req.query', req.query)
     res.setHeader('Content-Type', 'application/json;charset=utf-8')
@@ -25,7 +33,7 @@ router.get('/quickstart/condition.do', function (req, res) {
     )
 })
 
-router.get('/quickstart/detail.do/:id', function (req, res) {
+router.get('*/course/detail.do/:id', function (req, res) {
     console.log('detail req.url', req.url)
     console.log('detail req.params.id', req.params.id)
     courseCrud.findById(Course, req.params.id, (err, ret) => {
@@ -39,7 +47,7 @@ router.get('/quickstart/detail.do/:id', function (req, res) {
     })
 })
 
-router.get('/quickstart/enable.do/:id', function (req, res) {
+router.get('*/course/enable.do/:id', function (req, res) {
     console.log('enable.do, req.params.id', req.params.id)
     const course = {
         _id: req.params.id,
@@ -50,7 +58,7 @@ router.get('/quickstart/enable.do/:id', function (req, res) {
         res.end('ok')
     })
 })
-router.get('/quickstart/disable.do/:id', function (req, res) {
+router.get('*/course/disable.do/:id', function (req, res) {
     console.log('disable.do, req.params.id', req.params.id)
     const course = {
         _id: req.params.id,
@@ -62,7 +70,7 @@ router.get('/quickstart/disable.do/:id', function (req, res) {
     })
 })
 
-router.post('/quickstart/add.do', function (req, res) {
+router.post('*/course/add.do', function (req, res) {
     console.log('add req.url', req.url)
     // console.log('add req.body', req.body)
     const course = {

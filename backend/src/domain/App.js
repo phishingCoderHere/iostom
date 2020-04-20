@@ -14,6 +14,7 @@ module.exports = (mongoose) => {
                 order: Number,//排序
                 url: String,//地址
                 imgurl: String,//图片地址
+                imgdata: String,//图片base64编码
                 // local: String,//
                 status: String,//1：启用 0.禁用
                 feature: String //特点：提现快、体验好、任务多、单价高

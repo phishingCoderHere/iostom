@@ -19,7 +19,7 @@
                                 <textarea class="form-control" id="message-text"></textarea>
                             </div>
                         </form> -->
-                <form autocomplete="off" class="form-horizontal" action="quickstart/add.do" method="POST" id='editForm'
+                <form autocomplete="off" class="form-horizontal" action="course/add.do" method="POST" id='editForm'
                     enctype="application/x-www-form-urlencoded">
                     <div>
                         <div class="form-group col-xs-12">
@@ -123,7 +123,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="./resources/assets/js/jquery-form.js"></script>
+<script type="text/javascript" src="/resources/assets/js/jquery-form.js"></script>
 <script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
 <script>
     /**
@@ -131,11 +131,10 @@
      * **/
     var E = window.wangEditor
     var editor = new E('#content')
+    editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
     editor.create()
-
-    const getEditorContent = () => {
-        return editor.txt.html()
-    }
+    // 配置服务器端地址
+    // editor.customConfig.uploadImgServer = '/upload'
 
     //表单提交
     var submitForm = function () {
@@ -145,7 +144,7 @@
 
         $('#editForm').ajaxSubmit({
             data: {
-                content: getEditorContent()
+                content: editor.txt.html()
             },
             beforeSend: function () {
 

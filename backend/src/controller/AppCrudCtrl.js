@@ -11,7 +11,7 @@ const appCrud = require('../repository/AppCrud')
 /**
  * 渲染应用试玩
  */
-router.get('/app', function (req, res) {
+router.get('*/app', function (req, res) {
     console.log('渲染应用试玩 req.url', req.url)
     res.render('app/index.html')
 })
@@ -19,7 +19,7 @@ router.get('/app', function (req, res) {
 /**
  * 条件查询
  */
-router.get('/app/condition.do', function (req, res) {
+router.get('*/app/condition.do', function (req, res) {
     console.log('条件查询req.url req.query', req.url, req.query)
     res.setHeader('Content-Type', 'application/json;charset=utf-8')
     const obj = {}
@@ -28,13 +28,19 @@ router.get('/app/condition.do', function (req, res) {
     }
     appCrud.find({
         Model: App, criteria: obj, callback: (err, ret) => {
-            const data = JSON.stringify({
+            const text = JSON.stringify({
                 data: ret,
                 pagingBean: {
                     allNum: ret.length
                 }
             })
-            res.end(data)
+            // const dataobj = {
+            //     data: ret,
+            //     pagingBean: {
+            //         allNum: ret.length
+            //     }
+            // }
+            res.end(Buffer.from(text))  //todo
         }, sort: { 'order': 1 }
     })
 })
@@ -42,7 +48,7 @@ router.get('/app/condition.do', function (req, res) {
 /**
  * 详情
  */
-router.get('/app/detail.do/:id', function (req, res) {
+router.get('*/app/detail.do/:id', function (req, res) {
     console.log('详情 req.url', req.url)
     console.log('详情 req.params.id', req.params.id)
     appCrud.findById(App, req.params.id, (err, ret) => {
@@ -54,7 +60,7 @@ router.get('/app/detail.do/:id', function (req, res) {
 /**
  * 启用
  */
-router.get('/app/enable.do/:id', function (req, res) {
+router.get('*/app/enable.do/:id', function (req, res) {
     console.log('启用 req.params.id', req.params.id)
     const app = {
         _id: req.params.id,
@@ -69,7 +75,7 @@ router.get('/app/enable.do/:id', function (req, res) {
 /**
  * 禁用
  */
-router.get('/app/disable.do/:id', function (req, res) {
+router.get('*/app/disable.do/:id', function (req, res) {
     console.log('禁用 req.params.id', req.params.id)
     const app = {
         _id: req.params.id,
@@ -84,7 +90,7 @@ router.get('/app/disable.do/:id', function (req, res) {
 /***
  * 新增
  */
-router.post('/app/add.do', function (req, res) {
+router.post('*/app/add.do', function (req, res) {
     console.log('新增应用 req.url', req.url)
     const app = {
         _id: req.body._id,
@@ -95,7 +101,8 @@ router.post('/app/add.do', function (req, res) {
         url: req.body.url,//地址
         status: '1',//1：启用 0.禁用
         feature: req.body.feature,
-        imgurl: req.body.imgurl,//图片url
+        // imgurl: req.body.imgurl,//图片url
+        imgdata: req.body.imgdata,//图片base64编码
         title: req.body.title,//标题
     }
     if (!app._id) {

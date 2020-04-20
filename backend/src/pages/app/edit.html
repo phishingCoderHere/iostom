@@ -30,12 +30,28 @@
                                     placeholder="请输入标题描述..." class="col-xs-12 col-sm-12" />
                             </div>
                         </div>
-                        <div class="form-group col-xs-12 mgt20">
+                        <!-- <div class="form-group col-xs-12 mgt20">
                             <label class="col-sm-3 control-label no-padding-right">图片
                                 <span style='color:red;'>*</span></label>
                             <div class="col-sm-9">
                                 <input name='imgurl' id="form-field-name" required="required" placeholder="地址..."
                                     class="col-xs-12 col-sm-12"></textarea>
+                            </div>
+                        </div> -->
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right">图片
+                                <span style='color:red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <input type="file" accept="image/*" id="imgselector" onchange="handleFiles()"
+                                    placeholder="图片..." class="col-xs-12 col-sm-12"></input>
+                                <input style="display: none;" name='imgdata' type="text" id="form-field-name"></input>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 mgt20">
+                            <label class="col-sm-3 control-label no-padding-right">图片预览
+                            </label>
+                            <div class="col-sm-9">
+                                <img id="imgpreview" style="width: 120px;" />
                             </div>
                         </div>
                         <div class="form-group col-xs-12 mgt20">
@@ -79,44 +95,58 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-xs radius5"><span
+                                class='fa fa-save'></span>保存</button>
+                        <button type="button" class="btn btn-warning btn-xs radius5 mgl20" data-dismiss="modal"><span
+                                class='fa fa-reply'></span>取消</button>
+                    </div>
                 </form>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-xs radius5" onclick="submitForm()"><span
-                        class='fa fa-save'></span>保存</button>
-                <button type="button" class="btn btn-warning btn-xs radius5 mgl20" data-dismiss="modal"><span
-                        class='fa fa-reply'></span>取消</button>
-            </div>
+
         </div>
     </div>
 </div>
-<script type="text/javascript" src="./resources/assets/js/jquery-form.js"></script>
+<script type="text/javascript" src="/resources/assets/js/jquery-form.js"></script>
 <script>
 
-    //表单提交
-    var submitForm = function () {
-        console.log('submit');
-
-        if (!smart.validForm('editForm')) {
-            return;
+    /**
+     * 预览图片 ，读取图片base64编码
+     **/
+    function handleFiles() {
+        const files = $('#imgselector')[0].files
+        var reader = new FileReader();
+        reader.readAsDataURL(files[0])
+        reader.onload = function () {
+            $('#imgpreview')[0].src = reader.result;
+            const input = $('input[name="imgdata"]')[0]
+            $('input[name="imgdata"]')[0].value = reader.result;
         }
-
-        $('#editForm').ajaxSubmit({
-
-            beforeSend: function () {
-
-            },
-            uploadProgress: function () {
-
-            },
-            success: function (data) {
-                $('#editModal').modal('hide');
-                smart.showSuccessTip('保存成功');
-                getData();
-            },
-            error: function (xhr) {
-                smart.showErrorTip('保存失败');
-            }
-        });
     }
+
+    //表单提交
+    // var submitForm = function () {
+    //     if (!smart.validForm('editForm')) {
+    //         return;
+    //     }
+
+    //     $('#editForm').ajaxSubmit({
+    //         // data: { imgdata: $('#imgpreview')[0].src },
+    //         beforeSend: function () {
+
+    //         },
+    //         uploadProgress: function () {
+
+    //         },
+    //         success: function (data) {
+    //             $('#editModal').modal('hide');
+    //             smart.showSuccessTip('保存成功');
+    //             getData();
+    //         },
+    //         error: function (xhr) {
+    //             smart.showErrorTip('保存失败');
+    //         }
+    //     });
+    // }
 </script>
