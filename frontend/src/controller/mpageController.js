@@ -27,7 +27,7 @@ router.get('/jiaocheng/:id', function (req, res) {
 
     httpUtils.sendRequest('localhost', `/course/detail.do/${id}`, 'GET', 8445, (data) => {
         let result = JSON.parse(data.toString('utf8'))
-        console.log('请求结果', result);
+        // console.log('请求结果', result);
 
         res.render('framework.html', {
             tmpl: './tmpls/toturial.tmpl.html',
