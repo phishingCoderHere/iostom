@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const iosController = require('./controller/iosController')
 const mpageController = require('./controller/mpageController')
+const androidCtrl = require('./controller/androidCtrl')
 const bodyParser = require('body-parser')
 
 /* express */
@@ -14,6 +15,7 @@ app.set('views', path.join(__dirname, '/pages'))
 /* 声明控制器 */
 app.use(iosController)
 app.use(mpageController)
+app.use(androidCtrl)
 
 /**资源文件 */
 app.use('/pages', express.static(path.join(__dirname, '/pages')))

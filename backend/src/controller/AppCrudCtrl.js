@@ -1,7 +1,6 @@
 /**
  * 应用列表控制器
  */
-
 const express = require('express')
 
 const router = express.Router()
@@ -26,6 +25,9 @@ router.get('*/app/condition.do', function (req, res) {
     if (req.query.title) {//title：模糊查询
         obj.title = { $regex: `.*${req.query.title}.*`, $options: 'i' }
     }
+    if (req.query.type) {
+        obj.type = req.query.type
+    }
     appCrud.find({
         Model: App, criteria: obj, callback: (err, ret) => {
             const text = JSON.stringify({
@@ -34,13 +36,7 @@ router.get('*/app/condition.do', function (req, res) {
                     allNum: ret.length
                 }
             })
-            // const dataobj = {
-            //     data: ret,
-            //     pagingBean: {
-            //         allNum: ret.length
-            //     }
-            // }
-            res.end(Buffer.from(text))  //todo
+            res.end(Buffer.from(text))
         }, sort: { 'order': 1 }
     })
 })

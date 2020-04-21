@@ -29,6 +29,6 @@ const port = 8445
 console.log(' dirname: ' + __dirname + ', 端口：' + port);
 app.listen(port, () => {
     console.log(`后端已运行在端口号 ${port} 上....`);
-    opn(`http://localhost:${port}/server/index`);
+    // opn(`http://localhost:${port}/server/index`);
 })
 

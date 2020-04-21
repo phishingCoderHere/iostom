@@ -1,0 +1,43 @@
+<div class="row index-container">
+    <section class="list">
+        <div class="tab-content list-content">
+            <p style="text-align:center"><span
+                    class="top-text">&nbsp;&nbsp;&nbsp;&nbsp;</span>各大试玩平台15:00~17:00时间段任务应用最多 </p>
+            <div class="tab-pane fade in active" id="ios">
+                {{each apps}}
+                {{if $value.status === '1'}}
+                <div class="item">
+                    <div class="media">
+                        <div class="media-left">
+                            <a alt="iMoney" title="iMoney" href="{{$value.url}}"><img class="media-object"
+                                    src="{{$value.imgdata}}" alt="{{$value.feature}}" /></a>
+                        </div>
+                        <div class="media-body">
+                            <div class="col-xs-8 col-md-8 desc-item">
+                                <div class="row intro-type-2">
+                                    <p class="media-heading">
+                                        <span>{{$value.title}}</span>
+                                        <span class="sign sign2 fs10">{{$value.feature}}</span>
+                                    </p>
+                                    <p class="media-content">{{$value.titledesc}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-md-4 btn-item">
+                                <div class="row">
+                                    <a href="{{$value.url}}" title="{{$value.title}}" class="btn btn-default">开始赚钱</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+            <a href="http://www.iostom.com/ios" title="查看更多试玩平台">
+                <p class="moder">更多试玩平台</p>
+            </a>
+        </div>
+    </section>
+
+
+</div>
