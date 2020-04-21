@@ -3,11 +3,12 @@ const moment = require('moment')
 const httpUtils = require('../utils/httpUtils')
 const router = express.Router()
 
+
 const featureEnum = {
-    '1': '提现快',
-    '2': '体验好',
-    '3': '任务多',
-    '4': '单价高'
+    '1': { title: '提现快', className: 'sign sign4 fs10' },
+    '2': { title: '体验好', className: 'sign sign3 fs10' },
+    '3': { title: '任务多', className: 'sign sign2 fs10' },
+    '4': { title: '单价高', className: 'sign sign1 fs10' },
 }
 
 const getEnumNameByVal = (enum_, val) => {

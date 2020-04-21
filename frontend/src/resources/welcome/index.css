@@ -53,16 +53,16 @@ html,body{
 }
 
 .list a:nth-child(1){
-	background-color: rgba(211,103,0,0.5)
+	background-color: rgba(68,181,73,0.9)
 }
 .list a:nth-child(2){
-	background-color: rgba(243,111,223,0.5);
+	background-color: rgba(244,67,54,0.9);
 }
 .list a:nth-child(3){
-	background-color: rgba(246,187,46,0.5);
+	background-color: rgba(247,193,7,0.9);
 }
 .list a:nth-child(4){
-	background-color: #8BC34A;
+	background-color: #d67c73;
 }
 .list .item-l{
 	padding: 7px 25px 7px 15px;
@@ -80,13 +80,13 @@ html,body{
 	position: relative;
 }
 .list .item-r img{
-    width: 10px;
+       width: 13px;
     height: 20px;
     display: block;
     position: absolute;
-    right: 6px;
-    top: 39px;
-    margin-top: -25px;
+    right: 15px;
+    top: 51px;
+    margin-top: -28px;
 }
 .sw-btn{
 	position: fixed;
