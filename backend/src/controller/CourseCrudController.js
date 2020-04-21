@@ -20,6 +20,9 @@ router.get('*/course/condition.do', function (req, res) {
     if (req.query.title) {//title：模糊查询
         obj.title = { $regex: `.*${req.query.title}.*`, $options: 'i' }
     }
+    if (req.query.local) {
+        obj.local = req.query.local
+    }
     courseCrud.find(Course, obj,
         (err, ret) => {
             const data = JSON.stringify({
