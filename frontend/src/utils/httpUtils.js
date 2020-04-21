@@ -13,8 +13,8 @@ const sendRequest = (host, path, method, port, callback) => {
             path: path              // 请求路径
         },
         (res) => {
-            console.log(`状态码: ${res.statusCode}`);
-            console.log(`响应头: ${JSON.stringify(res.headers)}`);
+            // console.log(`状态码: ${res.statusCode}`);
+            // console.log(`响应头: ${JSON.stringify(res.headers)}`);
             // res.setEncoding('utf8');
             let responseTxt = ''
             res.on('data', (chunk) => {
