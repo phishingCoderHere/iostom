@@ -18,7 +18,7 @@ app.use(AppCrudCtrl)
 app.use(IndexCtrl)
 
 /**资源文件 */
-app.use('/resources', express.static(path.join(__dirname, '/resources/')))
+app.use('*/resources', express.static(path.join(__dirname, '/resources/')))
 
 mongoose.connect('mongodb://localhost:27017/iostom', { useNewUrlParser: true });
 /* 声明控制器 */
