@@ -1,27 +1,5 @@
 const moment = require('moment')
 const _ = require('lodash')
-const appName = '试玩应用'
-
-/**
- * 根据id更新
- * @param {*} Model
- * @param {*} id
- * @param {*} entity
- * @param {*} callback
- */
-function updateById(Model, id, entity, callback) {
-    console.log(`${appName} 根据id更新 时间`, new Date())
-    const common = {
-        utime: moment()
-    }
-    entity = _.merge(entity, common)
-    Model.findByIdAndUpdate(id, entity, (err, ret) => {
-        if (err) {
-            console.error(err)
-        }
-        callback(err, ret)
-    })
-}
 
 /**
  * 插入一条记录
@@ -31,7 +9,12 @@ function updateById(Model, id, entity, callback) {
  */
 function insert(Model, row, callback) {
     console.log(`${appName} 插入一条记录 时间`, new Date())
-    new Model({ ...row, crt_time: moment() }).save().then(() => callback())
+    const common = {
+        ctime: moment(),
+        utime: moment()
+    }
+    row = _.merge(row, common)
+    new Model(row).save().then(() => callback())
 }
 
 /**
@@ -94,10 +77,17 @@ function find(args) {
  */
 function removeById(Model, id, callback) {
     console.log(`${appName}删除 时间`, new Date())
-    Model.remove({ _id: id }).then((product) => {
-        callback(product)
-    }).catch((err) => {
-        assert.ok(err)
+    findOne(Model, {
+        _id: id
+    }, (err, ret) => {
+        if (err) {
+            console.error(err)
+        }
+        ret.remove().then((product) => {
+            callback(product)
+        }).catch((err) => {
+            assert.ok(err)
+        })
     })
 }
 
