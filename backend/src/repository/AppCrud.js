@@ -1,5 +1,7 @@
 const moment = require('moment')
 const _ = require('lodash')
+const Model = require('../model/App')
+
 const appName = '试玩应用'
 
 /**
@@ -25,13 +27,18 @@ function updateById(Model, id, entity, callback) {
 
 /**
  * 插入一条记录
- * @param {*} Model
- * @param {*} row
- * @param {*} callback
+ * @param {*} doc 
+ * @param {*} callback 
  */
-function insert(Model, row, callback) {
-    console.log(`${appName} 插入一条记录 时间`, new Date())
-    new Model({ ...row, crt_time: moment() }).save().then(() => callback())
+function insert(doc, callback) {
+    const appModel = new Model({ ...doc, crt_time: moment() });
+    appModel.save(function (err, product) {
+        if (err) {
+            console.log(err);
+            callback(err)
+        }
+        callback(product)
+    })
 }
 
 /**
@@ -87,17 +94,17 @@ function find(args) {
 }
 
 /**
- * 删除
+ * 根据条件删除一条
  * @param {*} Model
  * @param {*} criteria
  * @param {*} callback
  */
-function removeById(Model, id, callback) {
-    console.log(`${appName}删除 时间`, new Date())
-    Model.remove({ _id: id }).then((product) => {
+function deleteOneByCondition(Model, condition, callback) {
+    console.log(`功能:${appName}, 动作：deleteOneById, 时间:${new Date()}`)
+    Model.deleteOne(condition).then((product) => {
         callback(product)
     }).catch((err) => {
-        assert.ok(err)
+        callback(err)
     })
 }
 
@@ -106,4 +113,4 @@ module.exports.insert = insert
 module.exports.findOne = findOne
 module.exports.find = find
 module.exports.findById = findById
-module.exports.removeById = removeById
+module.exports.deleteOneByCondition = deleteOneByCondition

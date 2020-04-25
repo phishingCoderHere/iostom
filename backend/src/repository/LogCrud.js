@@ -1,20 +1,17 @@
 const moment = require('moment')
 const _ = require('lodash')
 
+const appName = "日志管理"
+
 /**
  * 插入一条记录
  * @param {*} Model
  * @param {*} row
  * @param {*} callback
  */
-function insert(Model, row, callback) {
-    console.log(`${appName} 插入一条记录 时间`, new Date())
-    const common = {
-        ctime: moment(),
-        utime: moment()
-    }
-    row = _.merge(row, common)
-    new Model(row).save().then(() => callback())
+function insert(model, row, callback) {
+    console.log(`功能:${appName}, 动作：insert, 时间:${new Date()}`)
+    model({ ...row, crt_time: moment() }).save().then((product) => callback(product))
 }
 
 /**
@@ -76,7 +73,7 @@ function find(args) {
  * @param {*} callback
  */
 function removeById(Model, id, callback) {
-    console.log(`${appName}删除 时间`, new Date())
+    console.log(`功能:${appName}, 动作：removeById, 时间:${new Date()}`)
     findOne(Model, {
         _id: id
     }, (err, ret) => {

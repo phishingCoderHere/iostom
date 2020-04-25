@@ -28,11 +28,5 @@ Kitten.find(null, (err, data) => {
     console.log(data);
 
 })
-Kitten.find(null, (err, data) => {
-    console.log(data);
-})
-Kitten.find(null, (err, data) => {
-    console.log(data);
-})
 
 // xiaomiao.speak()

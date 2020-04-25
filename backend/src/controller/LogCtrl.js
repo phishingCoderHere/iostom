@@ -4,7 +4,7 @@
 const express = require('express')
 
 const router = express.Router()
-let Log = require('../domain/Log')
+let LogSchema = require('../domain/Log')
 const appCrud = require('../repository/AppCrud')
 
 /**
@@ -21,7 +21,7 @@ router.get('*/log/condition.do', function (req, res) {
         obj.type = req.query.type
     }
     appCrud.find({
-        Model: Log, criteria: obj, callback: (err, ret) => {
+        Model: LogSchema, criteria: obj, callback: (err, ret) => {
             const text = JSON.stringify({
                 data: ret,
                 pagingBean: {
@@ -39,7 +39,7 @@ router.get('*/log/condition.do', function (req, res) {
 router.get('*/log/detail.do/:id', function (req, res) {
     console.log('详情 req.url', req.url)
     console.log('详情 req.params.id', req.params.id)
-    appCrud.findById(Log, req.params.id, (err, ret) => {
+    appCrud.findById(LogSchema, req.params.id, (err, ret) => {
         res.setHeader('Content-Type', 'application/json')
         res.end(JSON.stringify(ret))
     })
@@ -51,7 +51,7 @@ router.get('*/log/detail.do/:id', function (req, res) {
 router.post('*/log/add.do', function (req, res) {
     console.log('插入日志 req.url', req.url)
     const log = {
-        start_time: req.body.start_time,//创建时间
+        start_time: req.body.start_time,//开始时间
         end_time: req.body.end_time,//结束时间
         host: req.body.host,//主机地址
         path: req.body.path,//路径 
@@ -60,7 +60,7 @@ router.post('*/log/add.do', function (req, res) {
         desc: req.body.desc,//描述
         duration: req.body.duration,//执行时间ms
     }
-    appCrud.insert(Log, log, (err, ret) => {
+    appCrud.insert(LogSchema, log, (err, ret) => {
         res.end()
     })
 
@@ -78,7 +78,7 @@ router.post('*/log/add.do', function (req, res) {
 })
 
 router.mongoose = (mongoose) => {
-    Log = Log(mongoose)
+    LogSchema = LogSchema(mongoose)
     return router
 }
 

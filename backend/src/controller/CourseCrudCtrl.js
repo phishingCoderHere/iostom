@@ -1,7 +1,7 @@
 const express = require('express')
 
 const router = express.Router()
-let Course = require('../domain/Course')
+let Course = require('../model/Course')
 const courseCrud = require('../repository/CourseCrud')
 
 /**
@@ -100,7 +100,7 @@ router.post('*/course/add.do', function (req, res) {
     }
 })
 
-router.mongoose = (mongoose) => {
+module.exports.mongoose = (mongoose) => {
     Course = Course(mongoose)
     return router
 }
