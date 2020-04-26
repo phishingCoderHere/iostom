@@ -11,15 +11,11 @@ const appName = '试玩应用'
  * @param {*} entity
  * @param {*} callback
  */
-function updateById(Model, id, entity, callback) {
-    console.log(`${appName} 根据id更新 时间`, new Date())
-    const common = {
-        utime: moment()
-    }
-    entity = _.merge(entity, common)
+function updateById(id, entity, callback) {
+    entity = { ...entity, utime: moment() }
     Model.findByIdAndUpdate(id, entity, (err, ret) => {
         if (err) {
-            console.error(err)
+            return console.error(err)
         }
         callback(err, ret)
     })
@@ -31,7 +27,7 @@ function updateById(Model, id, entity, callback) {
  * @param {*} callback 
  */
 function insert(doc, callback) {
-    const appModel = new Model({ ...doc, crt_time: moment() });
+    const appModel = new Model({ ...doc, ctime: moment(), utime: moment() });
     appModel.save(function (err, product) {
         if (err) {
             console.log(err);
@@ -63,11 +59,10 @@ function findOne(Model, criteria, callback) {
  * @param {*} criteria
  * @param {*} callback
  */
-function findById(Model, _id, callback) {
-    console.log(`${appName} 条件查询一条 时间`, new Date())
+function findById(_id, callback) {
     Model.findById(_id, (err, ret) => {
         if (err) {
-            console.error(err)
+            return console.error(err)
         }
         callback(err, ret)
     })
@@ -81,10 +76,10 @@ function findById(Model, _id, callback) {
  * @param {*} sort
  */
 function find(args) {
+    console.log(`${appName} 条件查询 时间`, new Date())
     const {
-        Model, criteria, callback, sort
+        criteria, callback, sort
     } = args
-    console.log(`${appName} 条件查询一条 时间`, new Date())
     Model.find(criteria, (err, ret) => {
         if (err) {
             console.error(err)

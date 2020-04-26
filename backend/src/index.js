@@ -8,7 +8,7 @@ const appCtrl = require('./controller/AppCtrl')
 const port = 8445
 
 const app = express()
-var opn = require('opn');
+// var opn = require('opn');
 
 /**     express     */
 console.log('__dirname: ' + __dirname + ', 端口：' + port);
