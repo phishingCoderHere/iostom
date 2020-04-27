@@ -104,7 +104,7 @@ router.get('*/app/disable.do/:id', function (req, res) {
  * 新增
  */
 // router.post('*/app/add.do', multer({ dest: 'uploads/' }).single('appicon'), function (req, res) {
-router.post('*/app/add.do', multer().none(), function (req, res) {
+router.post('*/app/add.do', function (req, res) {
     const doc = {
         _id: req.body._id,
         name: req.body.name,//名字

@@ -1,8 +1,43 @@
 const express = require('express')
 const moment = require('moment')
 const router = express.Router()
-const httpUtils = require('../utils/httpUtils')
 
+const axios = require('axios')
+// const httpUtils = require('../utils/httpUtils')
+
+
+router.get('*', function (req, res, next) {
+    let type
+    switch (req.path) {
+        case '/ios':
+            type = '1'
+            break;
+        case '/android':
+            type = '2'
+            break;
+        case '/course':
+            type = '3'
+            break;
+        default:
+            type = '0'
+    }
+    axios.post('http://localhost:8445/log/add.do', {
+        start_time: moment(),
+        end_time: moment(),
+        host: req.host,//主机地址
+        path: req.path,//路径 
+        type: type,//类型（教程，安卓，IOS）
+        name: '',//名称（可以是教程名称，应用名称）
+        desc: '',//描述
+        duration: 0,//执行时间ms
+    }).then(res => {
+        console.log(`statusCode: ${res.statusCode}`)
+        console.log(res)
+    }).catch(error => {
+        console.error(error)
+    })
+    next()
+})
 router.get('/', function (req, res) {
     console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
     res.render('mainpage.html')
