@@ -172,21 +172,19 @@
                     return meta.row + 1
                 }
             },
-            { data: 'title', title: '<i class="ace-icon bigger-110 fa fa-list"></i>标题' },
+            { data: 'start_time', title: '<i class="ace-icon bigger-110 fa fa-list"></i>时间' },
+            { data: 'path', title: '<i class="ace-icon bigger-110 fa fa-list"></i>路径' },
+            { data: 'ip', title: '<i class="ace-icon bigger-110 fa fa-list"></i>IP地址' },
             { data: 'type', title: '<i class="ace-icon bigger-110 fa fa-list"></i>类型' },
-            { data: 'order', title: '<i class="ace-icon bigger-110 fa fa-list"></i>排序' },
-            { data: 'url', title: '<i class="ace-icon bigger-110 fa fa-list"></i>地址' },
-            { data: 'ctime', title: '<i class="ace-icon bigger-110 fa fa-list"></i>创建时间' },
-            { data: 'utime', title: '<i class="ace-icon bigger-110 fa fa-list"></i>修改时间' },
-            {
-                data: '_id', title: '<i class="ace-icon bigger-110 fa fa-wrench"></i>操作', render: function (data, type, row, meta) {
-                    let html = `<a class="blue" href="javascript:openOrClose('${data}', '${row.status}');" title="${row.status === '1' ? '作废' : '启用'}" >
-                    ${ row.status === '1' ? '<i class="ace-icon fa fa-times bigger-130"></i>' : '<i class="ace-icon fa fa-check bigger-130"></i>'}</a> `
-                    return `<div class="hidden-sm hidden-xs action-buttons">
-                        <a class="blue" href="javascript:showInfo('${data}');" title="编辑" > <i class="ace-icon fa fa-pencil bigger-130"></i></a>
-                        ${html} </div>`;
-                }
-            }
+            // {
+            //     data: '_id', title: '<i class="ace-icon bigger-110 fa fa-wrench"></i>操作', render: function (data, type, row, meta) {
+            //         let html = `<a class="blue" href="javascript:openOrClose('${data}', '${row.status}');" title="${row.status === '1' ? '作废' : '启用'}" >
+            //         ${ row.status === '1' ? '<i class="ace-icon fa fa-times bigger-130"></i>' : '<i class="ace-icon fa fa-check bigger-130"></i>'}</a> `
+            //         return `<div class="hidden-sm hidden-xs action-buttons">
+            //             <a class="blue" href="javascript:showInfo('${data}');" title="编辑" > <i class="ace-icon fa fa-pencil bigger-130"></i></a>
+            //             ${html} </div>`;
+            //     }
+            // }
         ],
         language: {
             "lengthMenu": "每页 _MENU_ 条",

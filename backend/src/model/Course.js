@@ -1,7 +1,6 @@
 /**
  * 教程
  */
-
 const mongoose = require('../repository/MongooseFactory')
 module.exports = mongoose.model
     ('Course',

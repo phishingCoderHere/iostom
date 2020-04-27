@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 /**声明控制器 */
 const appCtrl = require('./controller/AppCtrl')
 const logCtrl = require('./controller/LogCtrl')
+const courseCtrl = require('./controller/CourseCtrl')
+const indexCtrl = require('./controller/IndexCtrl')
 
 const port = 8445
 
@@ -19,11 +21,11 @@ app.use(bodyParser.json())
 app.set('views', path.join(__dirname, '/pages'))
 app.use(appCtrl)
 app.use(logCtrl)
+app.use(courseCtrl)
+app.use(indexCtrl)
 
 /**资源文件 */
 app.use('*/resources', express.static(path.join(__dirname, '/resources/')))
-// app.use(CourseCrudCtrl.mongoose(mongoose))
-// app.use(AppCrudCtrl.mongoose(mongoose))
 app.listen(port, () => {
     console.log(`后端已运行在端口号 ${port} 上....`);
     // opn(`http://localhost:${port}/server/index`);

@@ -1,8 +1,6 @@
 const express = require('express')
-
 const router = express.Router()
-let Course = require('../model/Course')
-const courseCrud = require('../repository/CourseCrud')
+const crud = require('../repository/CourseCrud')
 
 /**
  * 渲染入门教程页
@@ -23,15 +21,14 @@ router.get('*/course/condition.do', function (req, res) {
     if (req.query.local) {
         obj.local = req.query.local
     }
-    courseCrud.find(Course, obj,
+    crud.find(obj,
         (err, ret) => {
-            const data = JSON.stringify({
+            res.json({
                 data: ret,
                 pagingBean: {
                     allNum: ret.length
                 }
             })
-            res.end(data)
         }
     )
 })
@@ -39,14 +36,14 @@ router.get('*/course/condition.do', function (req, res) {
 router.get('*/course/detail.do/:id', function (req, res) {
     console.log('detail req.url', req.url)
     console.log('detail req.params.id', req.params.id)
-    courseCrud.findById(Course, req.params.id, (err, ret) => {
+    crud.findById(req.params.id, (err, ret) => {
         res.setHeader('Content-Type', 'application/json')
         const content = JSON.parse(ret.content)
         if (typeof content === 'object') {//兼容旧内容
             //因为wangEditor存储时是存的修改记录的数组，所以每次取最新的
             ret.content = content[content.length - 1]
         }
-        res.end(JSON.stringify(ret))
+        res.json(ret)
     })
 })
 
@@ -56,9 +53,9 @@ router.get('*/course/enable.do/:id', function (req, res) {
         _id: req.params.id,
         status: '1'
     }
-    courseCrud.updateById(Course, course._id, course, (err, ret) => {
+    crud.updateById(course._id, course, (err, ret) => {
         res.setHeader('Content-Type', 'application/json')
-        res.end('ok')
+        res.json(ret)
     })
 })
 router.get('*/course/disable.do/:id', function (req, res) {
@@ -67,15 +64,14 @@ router.get('*/course/disable.do/:id', function (req, res) {
         _id: req.params.id,
         status: '0'
     }
-    courseCrud.updateById(Course, course._id, course, (err, ret) => {
+    crud.updateById(course._id, course, (err, ret) => {
         res.setHeader('Content-Type', 'application/json')
-        res.end('ok')
+        res.json(ret)
     })
 })
 
 router.post('*/course/add.do', function (req, res) {
     console.log('add req.url', req.url)
-    // console.log('add req.body', req.body)
     const course = {
         _id: req.body._id,
         title: req.body.title,
@@ -90,20 +86,14 @@ router.post('*/course/add.do', function (req, res) {
     }
     if (!course._id) {
         course._id = undefined
-        courseCrud.insert(Course, course, (err, ret) => {
+        crud.insert(course, (err, ret) => {
             res.end()
         })
     } else {
-        courseCrud.updateById(Course, course._id, course, (err, ret) => {
+        crud.updateById(course._id, course, (err, ret) => {
             res.end()
         })
     }
 })
-
-module.exports.mongoose = (mongoose) => {
-    Course = Course(mongoose)
-    return router
-}
-
 
 module.exports = router;

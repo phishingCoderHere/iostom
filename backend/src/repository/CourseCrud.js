@@ -1,21 +1,18 @@
 const moment = require('moment')
 const _ = require('lodash')
-const { v4 } = require('uuid')
+const Model = require('../model/Course')
 
-const uuid = v4
+const appName = '教程管理'
+
 /**
  * 根据id更新
- * @param {*} Model 
  * @param {*} id 
  * @param {*} entity 
  * @param {*} callback 
  */
-function updateById(Model, id, entity, callback) {
+function updateById(id, entity, callback) {
     console.log('updateById 时间', new Date())
-    const common = {
-        utime: moment(),
-    }
-    entity = _.merge(entity, common)
+    entity = { ...entity, utime: moment() }
     Model.findByIdAndUpdate(id, entity, (err, ret) => {
         if (err) {
             console.error(err);
@@ -30,14 +27,13 @@ function updateById(Model, id, entity, callback) {
  * @param {*} row 
  * @param {*} callback 
  */
-function insert(Model, row, callback) {
+function insert(row, callback) {
     console.log('insert 时间', new Date())
-    const common = {
-        ctime: moment(),
-        utime: moment(),
+    row = {
+        ...row, ctime: moment(), utime: moment()
     }
-    row = _.merge(row, common)
-    new Model(row).save().then(() => callback());
+    const course = new Model(row)
+    course.save().then((err, ret) => callback(err, ret));
 }
 
 /**
@@ -46,11 +42,11 @@ function insert(Model, row, callback) {
  * @param {*} criteria 
  * @param {*} callback 
  */
-function findOne(Model, criteria, callback) {
+function findOne(criteria, callback) {
     console.log('findOne 时间', new Date())
     Model.findOne(criteria, (err, ret) => {
         if (err) {
-            console.error(err);
+            return console.error(err);
         }
         callback(err, ret)
     })
@@ -58,11 +54,10 @@ function findOne(Model, criteria, callback) {
 
 /**
  * 条件查询一条
- * @param {*} Model 
  * @param {*} criteria 
  * @param {*} callback 
  */
-function findById(Model, _id, callback) {
+function findById(_id, callback) {
     console.log('findById 时间', new Date())
     Model.findById(_id, (err, ret) => {
         if (err) {
@@ -74,11 +69,10 @@ function findById(Model, _id, callback) {
 
 /**
  * 条件查询一条
- * @param {*} Model 
  * @param {*} criteria 
  * @param {*} callback 
  */
-function find(Model, criteria, callback) {
+function find(criteria, callback) {
     console.log('find 时间', new Date())
     Model.find(criteria, (err, ret) => {
         if (err) {
@@ -89,28 +83,23 @@ function find(Model, criteria, callback) {
 }
 
 /**
- * 删除
+ * 根据条件删除一条
  * @param {*} Model
- * @param {*} criteria 
- * @param {*} callback 
+ * @param {*} criteria
+ * @param {*} callback
  */
-function removeById(Model, id, callback) {
-    findOne(Model, { _id: id }, (err, ret) => {
-        if (err) {
-            console.error(err);
-        }
-        ret.remove().then((product) => {
-            callback(product)
-        }).catch(function (err) {
-            assert.ok(err)
-        })
+function deleteOneByCondition(condition, callback) {
+    console.log(`功能:${appName}, 动作：deleteOneById, 时间:${new Date()}`)
+    Model.deleteOne(condition).then((product) => {
+        callback(product)
+    }).catch((err) => {
+        callback(err)
     })
-
 }
 
 module.exports.updateById = updateById;
 module.exports.insert = insert;
 module.exports.findOne = findOne;
 module.exports.find = find;
-module.exports.removeById = removeById;
+module.exports.deleteOneByCondition = deleteOneByCondition;
 module.exports.findById = findById;
