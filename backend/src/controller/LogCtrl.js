@@ -24,12 +24,18 @@ router.get('*/log/condition.do', function (req, res) {
         obj.start_time = { $regex: `.*${req.query.start_time}.*`, $options: 'i' }
     }
     crud.find({
+        paging: {
+            everySize: req.query.everySize,
+            currPage: req.query.currPage
+        },
         criteria: obj,
-        callback: (err, ret) => {
+        callback: (err, ret, count) => {
             const text = JSON.stringify({
                 data: ret,
                 pagingBean: {
-                    allNum: ret.length
+                    allNum: count,
+                    everySize: parseInt(req.query.everySize),
+                    currPage: parseInt(req.query.currPage)
                 }
             })
             res.end(text)

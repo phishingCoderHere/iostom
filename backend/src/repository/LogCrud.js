@@ -45,14 +45,27 @@ function findById(_id, callback) {
 function find(args) {
     console.log(`${appName} 条件查询 时间`, new Date())
     const {
-        criteria, callback, sort
+        criteria, callback, sort, paging
     } = args
-    Model.find(criteria, (err, ret) => {
-        if (err) {
-            console.error(err)
+    Model.count(criteria, function (err, count) {
+        if (count > 0) {
+            Model.find(criteria,
+                null,
+                {
+                    skip: parseInt(paging.everySize * paging.currPage),
+                    limit: parseInt(paging.everySize)
+                },
+                (err, ret) => {
+                    if (err) {
+                        console.error(err)
+                    }
+                    callback(err, ret, count)
+                }).sort(sort)
+        } else {
+            callback(err, [], 0)
         }
-        callback(err, ret)
-    }).sort(sort)
+    })
+
 }
 
 module.exports.insert = insert
