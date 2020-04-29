@@ -130,6 +130,14 @@ router.get('/xinshou', function (req, res) {
 })
 
 /**
+ * 添加入口
+ */
+router.get('/addentry', function (req, res) {
+    console.log("时间 " + moment().format('LLL') + " 路径 ", req.url);
+    res.render('addentry.html')
+})
+
+/**
  * 按id查询教程
  */
 router.get('/jiaocheng/:id', function (req, res) {

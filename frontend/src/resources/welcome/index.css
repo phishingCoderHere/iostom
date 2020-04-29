@@ -53,16 +53,19 @@ html,body{
 }
 
 .list a:nth-child(1){
-	background-color: rgba(68,181,73,0.9)
+	background-color: rgba(90, 190, 95, 0.9)
 }
 .list a:nth-child(2){
-	background-color: rgba(244,67,54,0.9);
+	background-color: #d67c73;
 }
 .list a:nth-child(3){
-	background-color: rgba(247,193,7,0.9);
+	background-color: rgba(247, 195, 7, 0.76);
 }
 .list a:nth-child(4){
-	background-color: #d67c73;
+	background-color: rgba(244,67,54,0.9);
+}
+.list a:nth-child(5){
+	background-color: #abbffd;
 }
 .list .item-l{
 	padding: 7px 25px 7px 15px;
