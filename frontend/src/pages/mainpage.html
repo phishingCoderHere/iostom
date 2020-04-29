@@ -1,5 +1,5 @@
 <!-- saved from url=(0017)http://gz757.com/ -->
-<html>
+<html data-dpr="1" style="font-size: 37.52px;">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,6 +10,8 @@
 	<link rel="shortcut icon" href="./resources/icon.png" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="./resources/welcome/index.css">
 	<link rel="stylesheet" type="text/css" href="./resources/welcome/swiper.min.css">
+	<link href="./resources/mainpage/cate.css" rel="stylesheet" type="text/css">
+	<link href="./resources/mainpage/entry.css" rel="stylesheet">
 	<style>
 		.swiper-container {
 			width: 100%;
@@ -42,12 +44,52 @@
 		}
 
 		.logo {
-			height: 2.95rem
+			height: 1.15rem;
 		}
 	</style>
 </head>
 
 <body>
+
+	<div id="addentry" class="add-to-desk-mask scroll-y" style="display: none;">
+		<div class="add-to-desk" style="display: block;">
+			<div class="add-header">
+				<a href="/">
+					<div class="add-back"></div>
+				</a>
+				<div class="add-title">添加到主屏幕</div>
+			</div>
+			<div class="add-item">
+				<div class="add-item-title">
+					<span class="add-order">1</span>点击底部“ <span class="add-desk-intro"></span> ”按钮
+				</div>
+				<div class="add-item-img add-item-img1"></div>
+			</div>
+			<div class="add-item">
+				<div class="add-item-title">
+					<span class="add-order">2</span>点击添加到主屏幕
+				</div>
+				<div class="add-item-img add-item-img2"></div>
+			</div>
+			<div class="add-item">
+				<div class="add-item-title">
+					<span class="add-order">3</span>点击右上角添加
+				</div>
+				<div class="add-item-img add-item-img3">
+					<div class="add-icon"><img class="add-icon-img" src="./resources/icon.png"></div>
+					<div class="add-titles">试玩入口</div>
+					<div class="add-link">http://iostom.com</div>
+				</div>
+			</div>
+			<div class="add-item add-item-b">
+				<div class="add-item-img add-item-bottom">
+					<div class="add-icon-little"><img class="add-icon-img" src="./resources/icon.png"></div>
+					<div class="add-icon-little-name">试玩入口</div>
+					<div class="add-finger"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="sw">
 		<div class="head">
 			<a href="/"><img class="logo" src="/resources/mainpage/index-logo.png" alt="" /></a>
@@ -109,7 +151,7 @@
 				</div>
 			</a>
 			<!--添加入口-->
-			<a href="/addentry">
+			<a onclick="handleAddEntry()">
 				<div class="item-l">
 					<p class="item-t">【新用户必须添加永久入口】</p>
 					<p class="item-d">点击按步骤添加永久入口，避免入口丢失 </p>
@@ -138,6 +180,7 @@
 		</a>
 		<!--btn end-->
 	</div>
+
 	<script type="text/jscript" src="./resources/welcome/swiper.min.js"></script>
 	<script>
 		var swiper = new Swiper('.swiper-container', {
@@ -152,6 +195,11 @@
 				clickable: true,
 			},
 		});
+		function handleAddEntry() {
+			var el = document.getElementById('addentry')
+			el.setAttribute('style', 'display:block')
+		}
+
 	</script>
 </body>
 
