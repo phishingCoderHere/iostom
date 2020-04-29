@@ -34,21 +34,6 @@ app.use(indexCtrl)
 app.use(loginCtrl)
 
 
-/**
- * 统一拦截
- */
-app.get('/*', function (req, res, next) {
-    // if (!req.session.isLogin) {
-    //     if (req.url.endsWith('.js') || req.url.endsWith('.css') ||
-    //         req.url.endsWith('.woff') || req.url.endsWith('.woff2') ||
-    //         req.url.endsWith('.jpg') || req.url.endsWith('.png')) {
-    //         return req.next()
-    //     }
-    //     return res.redirect('/login')
-    // } else {
-    req.next()
-    // }
-})
 /**资源文件 */
 app.use('*/resources', express.static(path.join(__dirname, '/resources/')))
 app.use('*/plugins', express.static(path.join(__dirname, '../../plugins/')))

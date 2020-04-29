@@ -30,9 +30,9 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">登陆信息</p>
 
-        <form action="/login.do" method="post">
+        <form action="/login.do" method="post" enctype="multipart/form-data">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="管理员账户">
+            <input type="text" class="form-control" name="username" placeholder="管理员账户">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -49,12 +49,12 @@
           </div>
           <div class="row">
             <div class="col-4">
-              <!-- <div class="icheck-primary">
-                <input type="checkbox" id="remember">
+              <div class="icheck-primary">
+                <input type="checkbox" id="rememberMe">
                 <label for="remember">
-                  Remember Me
+                  记住密码
                 </label>
-              </div> -->
+              </div>
             </div>
             <!-- /.col -->
             <div class="col-4">
