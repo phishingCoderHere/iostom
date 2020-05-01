@@ -149,6 +149,7 @@
     "pdfmake": "^0.1.65",
     "popper.js": "^1.16.1",
     "raphael": "^2.3.0",
+    "redis": "^3.0.2",
     "select2": "^4.0.13",
     "sparklines": "^1.2.0",
     "summernote": "^0.8.16",
